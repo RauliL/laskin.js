@@ -1,0 +1,60 @@
+{
+  "name": "laskin-js",
+  "version": "1.0.0",
+  "description": "Implementation of Laskin programming language in JavaScript",
+  "license": "MIT",
+  "keywords": [
+    "calculator",
+    "programming language"
+  ],
+  "author": "Rauli Laine <rauli.laine@iki.fi>",
+  "main": "./dist/index.js",
+  "main:src": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./bin",
+    "./dist"
+  ],
+  "bin": {
+    "laskin-js": "./bin/laskin-js"
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "homepage": "https://rauli.dev/laskin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RauliL/laskin-js"
+  },
+  "bugs": {
+    "url": "https://github.com/RauliL/laskin-js/issues"
+  },
+  "scripts": {
+    "clean": "rimraf './dist'",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "format": "prettier --write './src'",
+    "test": "jest",
+    "lint": "eslint './src/**/*.ts'",
+    "prebuild": "$npm_execpath run clean",
+    "prepack": "$npm_execpath run build"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "decimal.js": "^10.4.3",
+    "strftime": "^0.10.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.10",
+    "@types/strftime": "^0.9.8",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
+  }
+}
