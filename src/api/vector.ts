@@ -17,6 +17,17 @@ import {
 } from "../unit";
 import { newNumberValue, valueAsNumber } from "../value";
 
+const w_vector = (context: Context) => {
+  let { value: count } = context.popNumber();
+  const result: Value[] = [];
+
+  while (count.comparedTo(0) > 0) {
+    result.push(context.pop());
+    count = count.sub(1);
+  }
+  context.pushVector(result);
+};
+
 const w_length = (context: Context) => {
   context.pushNumber(context.peekVector().length);
 };
@@ -271,6 +282,9 @@ const w_toTime = (context: Context) => {
 };
 
 export const vector: [string, BuiltinQuoteCallback][] = [
+  // Constructor.
+  ["vector", w_vector],
+
   ["vector:length", w_length],
 
   ["vector:max", w_max],
