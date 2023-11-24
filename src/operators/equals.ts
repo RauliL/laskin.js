@@ -9,7 +9,7 @@ import {
   Value,
   VectorValue,
   WeekdayValue,
-} from "../types";
+} from "../value";
 
 const eqBoolean = (a: BooleanValue, b: BooleanValue): boolean =>
   a.value === b.value;

@@ -5,8 +5,7 @@ import { RangeError, UnitError } from "../exception";
 import { toBaseUnit, unitCheck, unitConversion } from "../number";
 import { BuiltinQuoteCallback } from "../quote";
 import { getBaseUnitOf } from "../unit";
-import { Value } from "../types";
-import { newNumberValue } from "../value";
+import { Value, newNumberValue } from "../value";
 
 const unaryMethod =
   (callback: (x: Decimal) => Decimal) => (context: Context) => {

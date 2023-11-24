@@ -1,4 +1,4 @@
-import { Value } from "./value";
+import { Value } from "../value";
 
 export type NodeType =
   | "Definition"

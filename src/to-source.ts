@@ -1,6 +1,7 @@
 import { valueToString } from "./to-string";
-import { Node, Value } from "./types";
-import { NodeVisitor, ValueVisitor, visitNode, visitValue } from "./visitor";
+import { Node } from "./types";
+import { Value, ValueVisitor, visitValue } from "./value";
+import { NodeVisitor, visitNode } from "./visitor";
 
 const valueVisitor: ValueVisitor<string> = {
   visitBoolean(value) {

@@ -1,6 +1,6 @@
 import { LaskinError } from "../exception";
 import { ScriptedQuote } from "../quote";
-import { Month, Value, ValueType, Weekday } from "../types";
+import { Month, Weekday } from "../types";
 import {
   newBooleanValue,
   newDateValue,
@@ -12,8 +12,9 @@ import {
   newTimeValue,
   newVectorValue,
   newWeekdayValue,
-} from "../value";
-import { ValueVisitor, visitValue } from "./value";
+} from "./constructor";
+import { Value, ValueType } from "./types";
+import { ValueVisitor, visitValue } from "./visitor";
 
 describe("visitValue()", () => {
   const visitBoolean = jest.fn();

@@ -11,7 +11,7 @@ import {
   Value,
   VectorValue,
   WeekdayValue,
-} from "../types";
+} from "./types";
 
 export type ValueVisitor<R, A = undefined> = {
   visitBoolean: (value: BooleanValue, arg: A) => R;

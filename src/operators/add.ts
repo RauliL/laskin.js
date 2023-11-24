@@ -14,25 +14,22 @@ import {
   timeValueToDate,
 } from "../chrono";
 import { TypeError } from "../exception";
-import {
-  DateValue,
-  Month,
-  MonthValue,
-  NumberValue,
-  RecordValue,
-  StringValue,
-  TimeValue,
-  Value,
-  VectorValue,
-  Weekday,
-  WeekdayValue,
-} from "../types";
+import { Month, Weekday } from "../types";
 import {
   numberValueBinaryOperator,
   vectorValueBinaryOperator,
   vectorValueNumberBinaryOperator,
 } from "./utils";
 import {
+  DateValue,
+  MonthValue,
+  NumberValue,
+  RecordValue,
+  StringValue,
+  TimeValue,
+  WeekdayValue,
+  Value,
+  VectorValue,
   newMonthValue,
   newRecordValue,
   newStringValue,

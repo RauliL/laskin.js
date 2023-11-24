@@ -1,8 +1,8 @@
 import { format } from "date-fns";
 
-import { Month, Value, Weekday } from "./types";
-import { ValueVisitor, visitValue } from "./visitor";
 import { dateValueToDate, timeValueToDate } from "./chrono";
+import { Month, Weekday } from "./types";
+import { Value, ValueVisitor, visitValue } from "./value";
 
 const visitor: ValueVisitor<string> = {
   visitBoolean(value) {

@@ -9,7 +9,7 @@ import {
   Value,
   VectorValue,
   WeekdayValue,
-} from "../types";
+} from "../value";
 
 const compareDate = (a: DateValue, b: DateValue): number => {
   if (a.year > b.year) {

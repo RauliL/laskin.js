@@ -1,9 +1,9 @@
 import { Decimal } from "decimal.js";
 
 import { SyntaxError, UnitError } from "./exception";
-import { NumberValue, Unit } from "./types";
+import { Unit } from "./types";
 import { findUnitBySymbol, getAllUnitsOf, isBaseUnit } from "./unit";
-import { newNumberValue } from "./value";
+import { NumberValue, newNumberValue } from "./value";
 
 export const isNumber = (input: string): boolean => {
   const { length } = input;

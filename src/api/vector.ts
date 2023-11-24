@@ -2,10 +2,10 @@ import { Context, PrintFunction } from "../context";
 import { RangeError } from "../exception";
 import { add, compare, divide } from "../operators";
 import { BuiltinQuoteCallback } from "../quote";
-import { Month, MonthValue, Value } from "../types";
+import { Month } from "../types";
 import { valueToString } from "../to-string";
 import { units } from "../unit";
-import { newNumberValue, valueAsNumber } from "../value";
+import { MonthValue, Value, newNumberValue, valueAsNumber } from "../value";
 
 const w_vector = (context: Context) => {
   let { value: count } = context.popNumber();

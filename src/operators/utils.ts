@@ -1,9 +1,8 @@
 import Decimal from "decimal.js";
 
-import { NumberValue, Value, VectorValue } from "../types";
 import { toBaseUnit, unitCheck, unitConversion } from "../number";
 import { getBaseUnitOf } from "../unit";
-import { newVectorValue } from "../value";
+import { NumberValue, Value, VectorValue, newVectorValue } from "../value";
 
 export const numberValueBinaryOperator = (
   a: NumberValue,

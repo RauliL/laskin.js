@@ -1,7 +1,6 @@
 import { Context, PrintFunction } from "../context";
 import { NameError } from "../exception";
 import { BuiltinQuoteCallback } from "../quote";
-import { Value, ValueType } from "../types";
 import {
   add,
   compare,
@@ -12,7 +11,13 @@ import {
 } from "../operators";
 import { valueToString } from "../to-string";
 import { valueToSource } from "../to-source";
-import { newBooleanValue, newNumberValue, newStringValue } from "../value";
+import {
+  Value,
+  ValueType,
+  newBooleanValue,
+  newNumberValue,
+  newStringValue,
+} from "../value";
 
 const typeTest = (type: ValueType) => (context: Context) => {
   context.pushBoolean(context.peek().type === type);

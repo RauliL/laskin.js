@@ -1,8 +1,7 @@
 import { Context, PrintFunction } from "../context";
 import { RangeError } from "../exception";
 import { BuiltinQuoteCallback } from "../quote";
-import { Value } from "../types";
-import { newStringValue, newVectorValue } from "../value";
+import { Value, newStringValue, newVectorValue } from "../value";
 
 const w_size = (context: Context) => {
   context.pushNumber(context.peekRecord().size);

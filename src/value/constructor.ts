@@ -1,22 +1,20 @@
 import Decimal from "decimal.js";
 
-import { isValidDate, isValidTime } from "./chrono";
-import { TypeError } from "./exception";
-import { Quote } from "./quote";
+import { isValidDate, isValidTime } from "../chrono";
+import { TypeError } from "../exception";
+import { Quote } from "../quote";
+import { Month, Unit, Weekday } from "../types";
 import {
   BooleanValue,
   DateValue,
-  Month,
   MonthValue,
   NumberValue,
   QuoteValue,
   RecordValue,
   StringValue,
   TimeValue,
-  Unit,
   Value,
   VectorValue,
-  Weekday,
   WeekdayValue,
 } from "./types";
 
@@ -101,27 +99,3 @@ export const newWeekdayValue = (
   type: "Weekday",
   value,
 });
-
-export const valueAsNumber = (
-  value: Value,
-  ...acceptedUnits: Unit[]
-): Decimal => {
-  if (value.type === "Number") {
-    const number = value as NumberValue;
-
-    if (
-      number.unit != null &&
-      acceptedUnits.find((unit) => unit.symbol === number.unit?.symbol) == null
-    ) {
-      throw new TypeError(
-        `Cannot use number of type ${number.unit.type.toLowerCase()} for this operation.`,
-      );
-    }
-
-    return number.value;
-  }
-
-  throw new TypeError(
-    `Unexpected ${value.type.toLowerCase()}; Was expecting number.`,
-  );
-};

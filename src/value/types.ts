@@ -1,8 +1,7 @@
 import { Decimal } from "decimal.js";
 
 import { Quote } from "../quote";
-import { Month, Weekday } from "./chrono";
-import { Unit } from "./unit";
+import { Month, Weekday, Unit } from "../types";
 
 export type ValueType =
   | "Boolean"

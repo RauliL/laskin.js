@@ -1,11 +1,11 @@
 import Decimal from "decimal.js";
 
-import { NumberValue, Value, VectorValue } from "../types";
 import {
   numberValueBinaryOperator,
   vectorValueBinaryOperator,
   vectorValueNumberBinaryOperator,
 } from "./utils";
+import { NumberValue, Value, VectorValue } from "../value";
 
 const mulNumber = (a: NumberValue, b: NumberValue): NumberValue =>
   numberValueBinaryOperator(a, b, Decimal.prototype.mul);

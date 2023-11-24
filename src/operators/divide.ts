@@ -1,6 +1,5 @@
 import { RangeError } from "../exception";
-import { NumberValue, Value, VectorValue } from "../types";
-import { newNumberValue } from "../value";
+import { NumberValue, Value, VectorValue, newNumberValue } from "../value";
 import {
   vectorValueBinaryOperator,
   vectorValueNumberBinaryOperator,

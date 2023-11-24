@@ -5,11 +5,10 @@ import {
   LiteralNode,
   Node,
   RecordLiteralNode,
-  StringValue,
   SymbolNode,
   VectorLiteralNode,
 } from "./types";
-import { newQuoteValue, newStringValue } from "./value";
+import { StringValue, newQuoteValue, newStringValue } from "./value";
 
 const isSpace = /^\s$/;
 const isSymbol = /^[^[\](){},\s]$/u;

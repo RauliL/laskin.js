@@ -1,6 +1,6 @@
 import { Context } from "./context";
 import { NameError, SyntaxError } from "./exception";
-import { Node, Value } from "./types";
+import { Node } from "./types";
 import {
   isDate,
   isMonth,
@@ -12,14 +12,15 @@ import {
   parseWeekday,
 } from "./chrono";
 import { isNumber, parseNumber } from "./number";
-import { NodeVisitor, visitNode } from "./visitor";
 import {
+  Value,
   newBooleanValue,
   newMonthValue,
   newRecordValue,
   newVectorValue,
   newWeekdayValue,
 } from "./value";
+import { NodeVisitor, visitNode } from "./visitor";
 
 const visitor: NodeVisitor<Value, Context> = {
   visitDefinition(node) {

@@ -5,24 +5,20 @@ import { RangeError, TypeError } from "./exception";
 import { execScript } from "./exec";
 import { Parser } from "./parser";
 import { BuiltinQuote, BuiltinQuoteCallback, Quote } from "./quote";
+import { Month, Unit, Weekday } from "./types";
 import {
   BooleanValue,
   DateValue,
-  Month,
   MonthValue,
   NumberValue,
   QuoteValue,
   RecordValue,
   StringValue,
-  TimeValue,
-  Unit,
+  WeekdayValue,
   Value,
   ValueType,
   VectorValue,
-  Weekday,
-  WeekdayValue,
-} from "./types";
-import {
+  TimeValue,
   newBooleanValue,
   newDateValue,
   newMonthValue,

@@ -1,6 +1,6 @@
 import { LaskinError, SyntaxError } from "./exception";
-import { DateValue, Month, TimeValue, Weekday } from "./types";
-import { newTimeValue } from "./value";
+import { Month, Weekday } from "./types";
+import { DateValue, TimeValue, newTimeValue } from "./value";
 
 const DATE_PATTERN = /^(\d+)-(\d{2})-(\d{2})$/;
 const TIME_PATTERN = /^(\d{2}):(\d{2}):(\d{2})$/;

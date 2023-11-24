@@ -1,9 +1,10 @@
 import { Context, PrintFunction } from "./context";
 import { evalNode } from "./eval";
 import { NameError } from "./exception";
-import { Node, QuoteValue, Value } from "./types";
+import { Node } from "./types";
 import { isDate, isTime, parseDate, parseTime } from "./chrono";
 import { isNumber, parseNumber } from "./number";
+import { QuoteValue, Value } from "./value";
 import { NodeVisitor, visitNode } from "./visitor";
 
 const visitor: NodeVisitor<undefined, [Context, PrintFunction]> = {
