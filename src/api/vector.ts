@@ -4,12 +4,7 @@ import { add, compare, divide } from "../operators";
 import { BuiltinQuoteCallback } from "../quote";
 import { Month, MonthValue, Value } from "../types";
 import { valueToString } from "../to-string";
-import {
-  day as dayUnit,
-  hour as hourUnit,
-  minute as minuteUnit,
-  second as secondUnit,
-} from "../unit";
+import { units } from "../unit";
 import { newNumberValue, valueAsNumber } from "../value";
 
 const w_vector = (context: Context) => {
@@ -257,7 +252,7 @@ const w_toDate = (context: Context) => {
     month = value.toNumber() - 1;
   }
 
-  const day = valueAsNumber(vector[2], dayUnit).toNumber();
+  const day = valueAsNumber(vector[2], units.day).toNumber();
 
   context.pushDate(year, month, day);
 };
@@ -269,9 +264,9 @@ const w_toTime = (context: Context) => {
     throw new RangeError("Time needs three values.");
   }
 
-  const hour = valueAsNumber(vector[0], hourUnit).toNumber();
-  const minute = valueAsNumber(vector[1], minuteUnit).toNumber();
-  const second = valueAsNumber(vector[2], secondUnit).toNumber();
+  const hour = valueAsNumber(vector[0], units.hour).toNumber();
+  const minute = valueAsNumber(vector[1], units.minute).toNumber();
+  const second = valueAsNumber(vector[2], units.second).toNumber();
 
   context.pushTime(hour, minute, second);
 };

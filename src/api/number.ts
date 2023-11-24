@@ -2,8 +2,9 @@ import { Decimal } from "decimal.js";
 
 import { Context, PrintFunction } from "../context";
 import { RangeError, UnitError } from "../exception";
+import { toBaseUnit, unitCheck, unitConversion } from "../number";
 import { BuiltinQuoteCallback } from "../quote";
-import { getBaseUnitOf, toBaseUnit, unitCheck, unitConversion } from "../unit";
+import { getBaseUnitOf } from "../unit";
 import { Value } from "../types";
 import { newNumberValue } from "../value";
 
@@ -11,7 +12,7 @@ const unaryMethod =
   (callback: (x: Decimal) => Decimal) => (context: Context) => {
     const { value, unit } = context.popNumber();
 
-    context.pushNumber(callback(value), unit);
+    context.pushNumber(callback.call(Decimal, value), unit);
   };
 
 const binaryMethod =
@@ -22,7 +23,12 @@ const binaryMethod =
 
     unitCheck(a, b);
 
-    context.push(unitConversion(callback(toBaseUnit(a), toBaseUnit(b)), base));
+    context.push(
+      unitConversion(
+        callback.call(Decimal, toBaseUnit(a), toBaseUnit(b)),
+        base,
+      ),
+    );
   };
 
 const w_hasUnit = (context: Context) => {

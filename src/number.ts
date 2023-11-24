@@ -1,6 +1,8 @@
-import { SyntaxError } from "./exception";
-import { NumberValue } from "./types";
-import { findUnitBySymbol } from "./unit";
+import { Decimal } from "decimal.js";
+
+import { SyntaxError, UnitError } from "./exception";
+import { NumberValue, Unit } from "./types";
+import { findUnitBySymbol, getAllUnitsOf, isBaseUnit } from "./unit";
 import { newNumberValue } from "./value";
 
 export const isNumber = (input: string): boolean => {
@@ -73,4 +75,53 @@ export const parseNumber = (input: string): NumberValue => {
   }
 
   return newNumberValue(input);
+};
+
+export const toBaseUnit = (number: NumberValue): Decimal => {
+  const { unit, value } = number;
+
+  if (unit && !isBaseUnit(unit)) {
+    if (unit.multiplier > 0) {
+      return value.mul(unit.multiplier);
+    } else if (unit.multiplier < 0) {
+      return value.div(-unit.multiplier);
+    }
+  }
+
+  return value;
+};
+
+export const unitCheck = (a: NumberValue, ...others: NumberValue[]) => {
+  for (const b of others) {
+    if (a.unit && b.unit) {
+      if (a.unit.type !== b.unit.type) {
+        throw new UnitError(
+          `Cannot compare ${a.unit.type.toLowerCase()} against ${b.unit.type.toLowerCase()}.`,
+        );
+      }
+    } else if (b.unit) {
+      throw new UnitError(
+        `Cannot compare number without an unit against number which has ${b.unit.type.toLowerCase()} as measurement unit.`,
+      );
+    }
+  }
+};
+
+export const unitConversion = (
+  value: Decimal,
+  baseUnit?: Unit,
+): NumberValue => {
+  if (baseUnit != null) {
+    for (const unit of getAllUnitsOf(baseUnit.type)) {
+      const { multiplier } = unit;
+
+      if (multiplier > 0 && value.comparedTo(multiplier) >= 0) {
+        value = value.div(multiplier);
+
+        return newNumberValue(value, unit);
+      }
+    }
+  }
+
+  return newNumberValue(value, baseUnit);
 };

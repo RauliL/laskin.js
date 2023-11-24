@@ -1,4 +1,5 @@
 import { TypeError } from "../exception";
+import { toBaseUnit, unitCheck } from "../number";
 import {
   DateValue,
   MonthValue,
@@ -9,7 +10,6 @@ import {
   VectorValue,
   WeekdayValue,
 } from "../types";
-import { toBaseUnit, unitCheck } from "../unit";
 
 const compareDate = (a: DateValue, b: DateValue): number => {
   if (a.year > b.year) {

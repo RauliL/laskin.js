@@ -12,7 +12,7 @@ import strftime from "strftime";
 import { dateToDateValue, dateValueToDate } from "../chrono";
 import { Context } from "../context";
 import { BuiltinQuoteCallback } from "../quote";
-import { second } from "../unit";
+import { units } from "../unit";
 import { newMonthValue, newNumberValue } from "../value";
 
 const w_today = (context: Context) => {
@@ -85,7 +85,7 @@ const w_toNumber = (context: Context) => {
   const value = context.popDate();
   const date = dateValueToDate(value);
 
-  context.pushNumber(getUnixTime(date), second);
+  context.pushNumber(getUnixTime(date), units.second);
 };
 
 const w_toVector = (context: Context) => {

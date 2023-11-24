@@ -27,7 +27,7 @@ import {
   Weekday,
   WeekdayValue,
 } from "../types";
-import { day, second } from "../unit";
+import { units } from "../unit";
 import {
   numberValueBinaryOperator,
   vectorValueBinaryOperator,
@@ -41,7 +41,10 @@ import {
 } from "../value";
 
 const subDate = (a: DateValue, b: DateValue): NumberValue =>
-  newNumberValue(differenceInDays(dateValueToDate(a), dateValueToDate(b)), day);
+  newNumberValue(
+    differenceInDays(dateValueToDate(a), dateValueToDate(b)),
+    units.day,
+  );
 
 const subNumber = (a: NumberValue, b: NumberValue): NumberValue =>
   numberValueBinaryOperator(a, b, Decimal.prototype.sub);
@@ -59,7 +62,7 @@ const subRecord = (a: RecordValue, b: RecordValue): RecordValue => {
 const subTime = (a: TimeValue, b: TimeValue): NumberValue =>
   newNumberValue(
     differenceInSeconds(timeValueToDate(a), timeValueToDate(b)),
-    second,
+    units.second,
   );
 
 const subVector = (a: VectorValue, b: VectorValue): VectorValue =>

@@ -4,7 +4,7 @@ import strftime from "strftime";
 import { dateToTimeValue, timeValueToDate } from "../chrono";
 import { Context } from "../context";
 import { BuiltinQuoteCallback } from "../quote";
-import { hour, minute, second } from "../unit";
+import { units } from "../unit";
 import { newNumberValue } from "../value";
 
 const w_now = (context: Context) => {
@@ -12,15 +12,15 @@ const w_now = (context: Context) => {
 };
 
 const w_hour = (context: Context) => {
-  context.pushNumber(context.peekTime().hour, hour);
+  context.pushNumber(context.peekTime().hour, units.hour);
 };
 
 const w_minute = (context: Context) => {
-  context.pushNumber(context.peekTime().minute, minute);
+  context.pushNumber(context.peekTime().minute, units.minute);
 };
 
 const w_second = (context: Context) => {
-  context.pushNumber(context.peekTime().second, second);
+  context.pushNumber(context.peekTime().second, units.second);
 };
 
 const w_format = (context: Context) => {
@@ -38,16 +38,16 @@ const w_toNumber = (context: Context) => {
   result += time.minute * secondsInMinute;
   result += time.second;
 
-  context.pushNumber(result, second);
+  context.pushNumber(result, units.second);
 };
 
 const w_toVector = (context: Context) => {
   const time = context.popTime();
 
   context.pushVector([
-    newNumberValue(time.hour, hour),
-    newNumberValue(time.minute, minute),
-    newNumberValue(time.second, second),
+    newNumberValue(time.hour, units.hour),
+    newNumberValue(time.minute, units.minute),
+    newNumberValue(time.second, units.second),
   ]);
 };
 
