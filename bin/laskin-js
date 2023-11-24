@@ -6,6 +6,8 @@ const readline = require("readline");
 
 const { Context, LaskinError } = require("../dist");
 
+const output = (text) => process.stdout.write(`${text}\n`);
+
 const countOpenBraces = (stack, line) => {
   for (let i = 0; i < line.length; ++i) {
     const c = line[i];
@@ -81,11 +83,7 @@ const runInteractively = (context) => {
 
         if (openBraces.length === 0) {
           try {
-            context.exec(
-              source,
-              (text) => process.stdout.write(`${text}\n`),
-              currentLine,
-            );
+            context.exec(source, output, currentLine);
           } catch (e) {
             if (e instanceof LaskinError) {
               process.stdout.write(`${e}\n`);
@@ -108,7 +106,7 @@ const runInteractively = (context) => {
 const runFile = (context, path) => {
   const source = fs.readFileSync(path, "utf8").toString();
 
-  context.exec(source, (text) => process.stdout.write(`${text}\n`));
+  context.exec(source, output);
 };
 
 (() => {
@@ -118,7 +116,9 @@ const runFile = (context, path) => {
     process.argv.slice(2).forEach((filename) => {
       runFile(context, filename);
     });
-  } else {
+  } else if (process.stdin.isTTY) {
     runInteractively(context);
+  } else {
+    runFile(context, process.stdin.fd);
   }
 })();
