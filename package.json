@@ -1,6 +1,6 @@
 {
-  "name": "laskin-js",
-  "version": "1.0.0",
+  "name": "laskin",
+  "version": "1.1.0",
   "description": "Implementation of Laskin programming language in JavaScript",
   "license": "MIT",
   "keywords": [
