@@ -1,4 +1,5 @@
-import { NumberValue, SyntaxError } from "./types";
+import { SyntaxError } from "./exception";
+import { NumberValue } from "./types";
 import { findUnitBySymbol } from "./unit";
 import { newNumberValue } from "./value";
 

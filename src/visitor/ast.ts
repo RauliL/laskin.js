@@ -1,6 +1,6 @@
+import { LaskinError } from "../exception";
 import {
   DefinitionNode,
-  LaskinError,
   LiteralNode,
   Node,
   RecordLiteralNode,

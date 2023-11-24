@@ -1,9 +1,10 @@
 import { Decimal } from "decimal.js";
 
 import { Context, PrintFunction } from "../context";
+import { RangeError, UnitError } from "../exception";
 import { BuiltinQuoteCallback } from "../quote";
 import { getBaseUnitOf, toBaseUnit, unitCheck, unitConversion } from "../unit";
-import { RangeError, UnitError, Value } from "../types";
+import { Value } from "../types";
 import { newNumberValue } from "../value";
 
 const unaryMethod =

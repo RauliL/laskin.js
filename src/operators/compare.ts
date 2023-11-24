@@ -1,10 +1,10 @@
+import { TypeError } from "../exception";
 import {
   DateValue,
   MonthValue,
   NumberValue,
   StringValue,
   TimeValue,
-  TypeError,
   Value,
   VectorValue,
   WeekdayValue,

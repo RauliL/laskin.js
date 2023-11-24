@@ -1,6 +1,7 @@
 import { Context, PrintFunction } from "../context";
+import { NameError } from "../exception";
 import { BuiltinQuoteCallback } from "../quote";
-import { NameError, Value, ValueType } from "../types";
+import { Value, ValueType } from "../types";
 import {
   add,
   compare,

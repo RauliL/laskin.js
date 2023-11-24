@@ -1,6 +1,7 @@
 import { Context, PrintFunction } from "./context";
 import { evalNode } from "./eval";
-import { NameError, Node, QuoteValue, Value } from "./types";
+import { NameError } from "./exception";
+import { Node, QuoteValue, Value } from "./types";
 import { isDate, isTime, parseDate, parseTime } from "./chrono";
 import { isNumber, parseNumber } from "./number";
 import { NodeVisitor, visitNode } from "./visitor";

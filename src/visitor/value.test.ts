@@ -1,11 +1,6 @@
-import {
-  LaskinError,
-  Month,
-  ScriptedQuote,
-  Value,
-  ValueType,
-  Weekday,
-} from "../types";
+import { LaskinError } from "../exception";
+import { ScriptedQuote } from "../quote";
+import { Month, Value, ValueType, Weekday } from "../types";
 import {
   newBooleanValue,
   newDateValue,

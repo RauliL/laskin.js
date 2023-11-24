@@ -1,7 +1,8 @@
 import { secondsInDay, secondsInHour, secondsInMinute } from "date-fns";
 import { Decimal } from "decimal.js";
 
-import { LaskinError, NumberValue, Unit, UnitError, UnitType } from "./types";
+import { LaskinError, UnitError } from "./exception";
+import { NumberValue, Unit, UnitType } from "./types";
 import { newNumberValue } from "./value";
 
 // Supported length units.

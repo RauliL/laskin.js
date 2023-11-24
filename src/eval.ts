@@ -1,5 +1,6 @@
 import { Context } from "./context";
-import { NameError, Node, SyntaxError, Value } from "./types";
+import { NameError, SyntaxError } from "./exception";
+import { Node, Value } from "./types";
 import {
   isDate,
   isMonth,

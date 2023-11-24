@@ -1,7 +1,8 @@
 import { Context, PrintFunction } from "../context";
+import { RangeError } from "../exception";
 import { add, compare, divide } from "../operators";
 import { BuiltinQuoteCallback } from "../quote";
-import { Month, MonthValue, RangeError, Value } from "../types";
+import { Month, MonthValue, Value } from "../types";
 import { valueToString } from "../to-string";
 import {
   day as dayUnit,

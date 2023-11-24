@@ -1,4 +1,5 @@
 import { ScriptedQuote } from "./quote";
+import { SyntaxError } from "./exception";
 import {
   DefinitionNode,
   LiteralNode,
@@ -6,7 +7,6 @@ import {
   RecordLiteralNode,
   StringValue,
   SymbolNode,
-  SyntaxError,
   VectorLiteralNode,
 } from "./types";
 import { newQuoteValue, newStringValue } from "./value";

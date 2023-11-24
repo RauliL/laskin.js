@@ -1,6 +1,7 @@
 import Decimal from "decimal.js";
 
 import { isValidDate, isValidTime } from "./chrono";
+import { TypeError } from "./exception";
 import { Quote } from "./quote";
 import {
   BooleanValue,
@@ -12,7 +13,6 @@ import {
   RecordValue,
   StringValue,
   TimeValue,
-  TypeError,
   Unit,
   Value,
   VectorValue,

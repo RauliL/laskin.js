@@ -1,6 +1,7 @@
 import { Decimal } from "decimal.js";
 
 import * as api from "./api";
+import { RangeError, TypeError } from "./exception";
 import { execScript } from "./exec";
 import { Parser } from "./parser";
 import { BuiltinQuote, BuiltinQuoteCallback, Quote } from "./quote";
@@ -11,11 +12,9 @@ import {
   MonthValue,
   NumberValue,
   QuoteValue,
-  RangeError,
   RecordValue,
   StringValue,
   TimeValue,
-  TypeError,
   Unit,
   Value,
   ValueType,

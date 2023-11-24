@@ -1,6 +1,7 @@
 import { Context, PrintFunction } from "../context";
+import { RangeError } from "../exception";
 import { BuiltinQuoteCallback } from "../quote";
-import { RangeError, Value } from "../types";
+import { Value } from "../types";
 import { newStringValue, newVectorValue } from "../value";
 
 const w_size = (context: Context) => {

@@ -1,7 +1,7 @@
+import { LaskinError } from "../exception";
 import {
   BooleanValue,
   DateValue,
-  LaskinError,
   MonthValue,
   NumberValue,
   QuoteValue,

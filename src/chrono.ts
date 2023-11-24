@@ -1,11 +1,5 @@
-import {
-  DateValue,
-  LaskinError,
-  Month,
-  SyntaxError,
-  TimeValue,
-  Weekday,
-} from "./types";
+import { LaskinError, SyntaxError } from "./exception";
+import { DateValue, Month, TimeValue, Weekday } from "./types";
 import { newTimeValue } from "./value";
 
 const DATE_PATTERN = /^(\d+)-(\d{2})-(\d{2})$/;

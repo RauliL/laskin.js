@@ -1,4 +1,5 @@
-import { NumberValue, RangeError, Value, VectorValue } from "../types";
+import { RangeError } from "../exception";
+import { NumberValue, Value, VectorValue } from "../types";
 import { newNumberValue } from "../value";
 import {
   vectorValueBinaryOperator,

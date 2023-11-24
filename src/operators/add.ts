@@ -13,6 +13,7 @@ import {
   dateValueToDate,
   timeValueToDate,
 } from "../chrono";
+import { TypeError } from "../exception";
 import {
   DateValue,
   Month,
@@ -21,7 +22,6 @@ import {
   RecordValue,
   StringValue,
   TimeValue,
-  TypeError,
   Value,
   VectorValue,
   Weekday,

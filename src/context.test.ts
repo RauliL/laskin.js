@@ -1,12 +1,7 @@
 import { Context } from "./context";
-import {
-  Month,
-  RangeError,
-  ScriptedQuote,
-  SyntaxError,
-  TypeError,
-  Weekday,
-} from "./types";
+import { RangeError, SyntaxError, TypeError } from "./exception";
+import { ScriptedQuote } from "./quote";
+import { Month, Weekday } from "./types";
 import {
   newBooleanValue,
   newDateValue,

@@ -1,8 +1,8 @@
 import { Context } from "../context";
+import { RangeError } from "../exception";
 import { isNumber, parseNumber } from "../number";
 import { BuiltinQuoteCallback, ScriptedQuote } from "../quote";
 import { Parser } from "../parser";
-import { RangeError } from "../types";
 import { newNumberValue, newStringValue } from "../value";
 
 const w_length = (context: Context) => {
