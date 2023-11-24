@@ -1,8 +1,8 @@
-import { Context } from "../context";
-import { BuiltinQuote, BuiltinQuoteCallback, OutputFunction } from "../types";
+import { Context, PrintFunction } from "../context";
+import { BuiltinQuote, BuiltinQuoteCallback } from "../quote";
 
-const w_call = (context: Context, output: OutputFunction) => {
-  context.popQuote().call(context, output);
+const w_call = (context: Context, print: PrintFunction) => {
+  context.popQuote().call(context, print);
 };
 
 const w_compose = (context: Context) => {
@@ -40,11 +40,11 @@ const w_negate = (context: Context) => {
   );
 };
 
-const w_dip = (context: Context, output: OutputFunction) => {
+const w_dip = (context: Context, print: PrintFunction) => {
   const quote = context.popQuote();
   const value = context.pop();
 
-  quote.call(context, output);
+  quote.call(context, print);
   context.push(value);
 };
 

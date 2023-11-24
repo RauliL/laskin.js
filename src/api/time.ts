@@ -3,7 +3,7 @@ import strftime from "strftime";
 
 import { dateToTimeValue, timeValueToDate } from "../chrono";
 import { Context } from "../context";
-import { BuiltinQuoteCallback } from "../types";
+import { BuiltinQuoteCallback } from "../quote";
 import { hour, minute, second } from "../unit";
 import { newNumberValue } from "../value";
 

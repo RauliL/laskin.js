@@ -1,9 +1,9 @@
+import { ScriptedQuote } from "./quote";
 import {
   DefinitionNode,
   LiteralNode,
   Node,
   RecordLiteralNode,
-  ScriptedQuote,
   StringValue,
   SymbolNode,
   SyntaxError,

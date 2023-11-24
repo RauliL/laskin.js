@@ -1,5 +1,6 @@
 import { Context } from "../context";
-import { BuiltinQuoteCallback, Weekday } from "../types";
+import { BuiltinQuoteCallback } from "../quote";
+import { Weekday } from "../types";
 
 const weekdayConstant = (weekday: Weekday) => (context: Context) => {
   context.pushWeekday(weekday);

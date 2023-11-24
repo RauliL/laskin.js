@@ -1,7 +1,7 @@
 import { Decimal } from "decimal.js";
 
+import { Quote } from "../quote";
 import { Month, Weekday } from "./chrono";
-import { Quote } from "./quote";
 import { Unit } from "./unit";
 
 export type ValueType =

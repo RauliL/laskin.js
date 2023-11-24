@@ -1,11 +1,6 @@
-import { Context } from "../context";
-import {
-  BuiltinQuoteCallback,
-  NameError,
-  OutputFunction,
-  Value,
-  ValueType,
-} from "../types";
+import { Context, PrintFunction } from "../context";
+import { BuiltinQuoteCallback } from "../quote";
+import { NameError, Value, ValueType } from "../types";
 import {
   add,
   compare,
@@ -135,16 +130,16 @@ const w_toSource = (context: Context) => {
   context.pushString(valueToSource(context.pop()));
 };
 
-const w_print = (context: Context, output: OutputFunction) => {
-  output(valueToString(context.pop()));
+const w_print = (context: Context, print: PrintFunction) => {
+  print(valueToString(context.pop()));
 };
 
-const w_stackPreview = (context: Context, output: OutputFunction) => {
+const w_stackPreview = (context: Context, print: PrintFunction) => {
   const { length } = context;
   let counter = 0;
 
   if (length === 0) {
-    output("Stack is empty.\n");
+    print("Stack is empty.\n");
     return;
   }
 
@@ -152,37 +147,37 @@ const w_stackPreview = (context: Context, output: OutputFunction) => {
     if (++counter > 10) {
       break;
     }
-    output(`${length - counter + 1}: ${valueToSource(value)}`);
+    print(`${length - counter + 1}: ${valueToSource(value)}`);
   }
 };
 
-const w_if = (context: Context, output: OutputFunction) => {
+const w_if = (context: Context, print: PrintFunction) => {
   const quote = context.popQuote();
   const condition = context.popBoolean();
 
   if (condition) {
-    quote.call(context, output);
+    quote.call(context, print);
   }
 };
 
-const w_ifElse = (context: Context, output: OutputFunction) => {
+const w_ifElse = (context: Context, print: PrintFunction) => {
   const elseQuote = context.popQuote();
   const thenQuote = context.popQuote();
   const condition = context.popBoolean();
 
-  (condition ? thenQuote : elseQuote).call(context, output);
+  (condition ? thenQuote : elseQuote).call(context, print);
 };
 
-const w_while = (context: Context, output: OutputFunction) => {
+const w_while = (context: Context, print: PrintFunction) => {
   const quote = context.popQuote();
   const condition = context.popQuote();
 
   for (;;) {
-    condition.call(context, output);
+    condition.call(context, print);
     if (!context.popBoolean()) {
       return;
     }
-    quote.call(context, output);
+    quote.call(context, print);
   }
 };
 

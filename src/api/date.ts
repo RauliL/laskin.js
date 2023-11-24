@@ -11,7 +11,7 @@ import strftime from "strftime";
 
 import { dateToDateValue, dateValueToDate } from "../chrono";
 import { Context } from "../context";
-import { BuiltinQuoteCallback } from "../types";
+import { BuiltinQuoteCallback } from "../quote";
 import { second } from "../unit";
 import { newMonthValue, newNumberValue } from "../value";
 

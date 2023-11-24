@@ -1,5 +1,5 @@
 import { Context } from "../context";
-import { BuiltinQuoteCallback } from "../types";
+import { BuiltinQuoteCallback } from "../quote";
 
 const w_not = (context: Context) => {
   context.pushBoolean(!context.popBoolean());

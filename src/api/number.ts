@@ -1,14 +1,9 @@
 import { Decimal } from "decimal.js";
 
-import { Context } from "../context";
+import { Context, PrintFunction } from "../context";
+import { BuiltinQuoteCallback } from "../quote";
 import { getBaseUnitOf, toBaseUnit, unitCheck, unitConversion } from "../unit";
-import {
-  BuiltinQuoteCallback,
-  OutputFunction,
-  RangeError,
-  UnitError,
-  Value,
-} from "../types";
+import { RangeError, UnitError, Value } from "../types";
 import { newNumberValue } from "../value";
 
 const unaryMethod =
@@ -89,13 +84,13 @@ const w_clamp = (context: Context) => {
   );
 };
 
-const w_times = (context: Context, output: OutputFunction) => {
+const w_times = (context: Context, print: PrintFunction) => {
   let { value } = context.popNumber();
   const quote = context.popQuote();
 
   while (value.comparedTo(0) > 0) {
     value = value.sub(1);
-    quote.call(context, output);
+    quote.call(context, print);
   }
 };
 

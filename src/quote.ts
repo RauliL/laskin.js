@@ -1,19 +1,17 @@
-import { Context } from "../context";
-import { execScript } from "../exec";
-import { nodeToSource } from "../to-source";
-import { Node } from "./ast";
-
-export type OutputFunction = (text: string) => void;
+import { Context, PrintFunction } from "./context";
+import { execScript } from "./exec";
+import { nodeToSource } from "./to-source";
+import { Node } from "./types";
 
 export abstract class Quote {
-  public abstract call(context: Context, output: OutputFunction): void;
+  public abstract call(context: Context, print: PrintFunction): void;
 
   public abstract toSource(): string;
 }
 
 export type BuiltinQuoteCallback = (
   context: Context,
-  output: OutputFunction,
+  print: PrintFunction,
 ) => void;
 
 export class BuiltinQuote extends Quote {
@@ -25,8 +23,8 @@ export class BuiltinQuote extends Quote {
     this.callback = callback;
   }
 
-  public call(context: Context, output: OutputFunction): void {
-    this.callback(context, output);
+  public call(context: Context, print: PrintFunction): void {
+    this.callback(context, print);
   }
 
   public toSource(): string {
@@ -43,8 +41,8 @@ export class ScriptedQuote extends Quote {
     this.nodes = nodes;
   }
 
-  public call(context: Context, output: OutputFunction): void {
-    execScript(context, output, this.nodes);
+  public call(context: Context, print: PrintFunction): void {
+    execScript(context, print, this.nodes);
   }
 
   public toSource(): string {

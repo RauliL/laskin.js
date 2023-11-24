@@ -1,13 +1,7 @@
-import { Context } from "../context";
+import { Context, PrintFunction } from "../context";
 import { add, compare, divide } from "../operators";
-import {
-  BuiltinQuoteCallback,
-  Month,
-  MonthValue,
-  OutputFunction,
-  RangeError,
-  Value,
-} from "../types";
+import { BuiltinQuoteCallback } from "../quote";
+import { Month, MonthValue, RangeError, Value } from "../types";
 import { valueToString } from "../to-string";
 import {
   day as dayUnit,
@@ -100,38 +94,38 @@ const w_sum = (context: Context) => {
   throw new RangeError("Vector is empty.");
 };
 
-const w_forEach = (context: Context, output: OutputFunction) => {
+const w_forEach = (context: Context, print: PrintFunction) => {
   const vector = context.popVector();
   const quote = context.popQuote();
 
   for (const value of vector) {
     context.push(value);
-    quote.call(context, output);
+    quote.call(context, print);
   }
 };
 
-const w_map = (context: Context, output: OutputFunction) => {
+const w_map = (context: Context, print: PrintFunction) => {
   const vector = context.popVector();
   const quote = context.popQuote();
   const result: Value[] = [];
 
   for (const value of vector) {
     context.push(value);
-    quote.call(context, output);
+    quote.call(context, print);
     result.push(context.pop());
   }
 
   context.pushVector(result);
 };
 
-const w_filter = (context: Context, output: OutputFunction) => {
+const w_filter = (context: Context, print: PrintFunction) => {
   const vector = context.popVector();
   const quote = context.popQuote();
   const result: Value[] = [];
 
   for (const value of vector) {
     context.push(value);
-    quote.call(context, output);
+    quote.call(context, print);
     if (context.popBoolean()) {
       result.push(value);
     }
@@ -140,7 +134,7 @@ const w_filter = (context: Context, output: OutputFunction) => {
   context.pushVector(result);
 };
 
-const w_reduce = (context: Context, output: OutputFunction) => {
+const w_reduce = (context: Context, print: PrintFunction) => {
   const vector = context.popVector();
   const quote = context.popQuote();
   let result: Value;
@@ -152,7 +146,7 @@ const w_reduce = (context: Context, output: OutputFunction) => {
   for (let i = 1; i < vector.length; ++i) {
     context.push(result);
     context.push(vector[i]);
-    quote.call(context, output);
+    quote.call(context, print);
     result = context.pop();
   }
 

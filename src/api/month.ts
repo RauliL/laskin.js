@@ -1,5 +1,6 @@
 import { Context } from "../context";
-import { BuiltinQuoteCallback, Month } from "../types";
+import { BuiltinQuoteCallback } from "../quote";
+import { Month } from "../types";
 
 const monthConstant = (month: Month) => (context: Context) => {
   context.pushMonth(month);

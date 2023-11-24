@@ -1,10 +1,6 @@
-import { Context } from "../context";
-import {
-  BuiltinQuoteCallback,
-  OutputFunction,
-  RangeError,
-  Value,
-} from "../types";
+import { Context, PrintFunction } from "../context";
+import { BuiltinQuoteCallback } from "../quote";
+import { RangeError, Value } from "../types";
 import { newStringValue, newVectorValue } from "../value";
 
 const w_size = (context: Context) => {
@@ -25,18 +21,18 @@ const w_values = (context: Context) => {
   context.pushVector(Array.from(context.popRecord().values()));
 };
 
-const w_forEach = (context: Context, output: OutputFunction) => {
+const w_forEach = (context: Context, print: PrintFunction) => {
   const elements = context.popRecord();
   const quote = context.popQuote();
 
   for (const [key, value] of elements) {
     context.pushString(key);
     context.push(value);
-    quote.call(context, output);
+    quote.call(context, print);
   }
 };
 
-const w_map = (context: Context, output: OutputFunction) => {
+const w_map = (context: Context, print: PrintFunction) => {
   const elements = context.popRecord();
   const quote = context.popQuote();
   const result: [string, Value][] = [];
@@ -44,7 +40,7 @@ const w_map = (context: Context, output: OutputFunction) => {
   for (const [key, value] of elements) {
     context.pushString(key);
     context.push(value);
-    quote.call(context, output);
+    quote.call(context, print);
 
     const newValue = context.pop();
     const newKey = context.popString();
@@ -55,7 +51,7 @@ const w_map = (context: Context, output: OutputFunction) => {
   context.pushRecord(result);
 };
 
-const w_filter = (context: Context, output: OutputFunction) => {
+const w_filter = (context: Context, print: PrintFunction) => {
   const elements = context.popRecord();
   const quote = context.popQuote();
   const result: [string, Value][] = [];
@@ -63,7 +59,7 @@ const w_filter = (context: Context, output: OutputFunction) => {
   for (const [key, value] of elements) {
     context.pushString(key);
     context.push(value);
-    quote.call(context, output);
+    quote.call(context, print);
     if (context.popBoolean()) {
       result.push([key, value]);
     }

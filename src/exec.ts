@@ -1,11 +1,11 @@
-import { Context } from "./context";
+import { Context, PrintFunction } from "./context";
 import { evalNode } from "./eval";
-import { NameError, Node, OutputFunction, QuoteValue, Value } from "./types";
+import { NameError, Node, QuoteValue, Value } from "./types";
 import { isDate, isTime, parseDate, parseTime } from "./chrono";
 import { isNumber, parseNumber } from "./number";
 import { NodeVisitor, visitNode } from "./visitor";
 
-const visitor: NodeVisitor<undefined, [Context, OutputFunction]> = {
+const visitor: NodeVisitor<undefined, [Context, PrintFunction]> = {
   visitDefinition(node, [context]) {
     context.define(node.id, context.pop());
   },
@@ -18,7 +18,7 @@ const visitor: NodeVisitor<undefined, [Context, OutputFunction]> = {
     context.push(evalNode(context, node));
   },
 
-  visitSymbol(node, [context, output]) {
+  visitSymbol(node, [context, print]) {
     let word: Value | undefined;
 
     if (context.length > 0) {
@@ -27,7 +27,7 @@ const visitor: NodeVisitor<undefined, [Context, OutputFunction]> = {
 
       if ((word = context.lookup(id)) != null) {
         if (word.type === "Quote") {
-          (word as QuoteValue).quote.call(context, output);
+          (word as QuoteValue).quote.call(context, print);
         } else {
           context.push(word);
         }
@@ -37,7 +37,7 @@ const visitor: NodeVisitor<undefined, [Context, OutputFunction]> = {
 
     if ((word = context.lookup(node.id)) != null) {
       if (word.type === "Quote") {
-        (word as QuoteValue).quote.call(context, output);
+        (word as QuoteValue).quote.call(context, print);
       } else {
         context.push(word);
       }
@@ -63,18 +63,12 @@ const visitor: NodeVisitor<undefined, [Context, OutputFunction]> = {
   },
 };
 
-export const execNode = (
-  context: Context,
-  output: OutputFunction,
-  node: Node,
-) => visitNode(visitor, node, [context, output]);
-
 export const execScript = (
   context: Context,
-  output: OutputFunction,
+  print: PrintFunction,
   script: Node[],
 ) => {
-  const arg: [Context, OutputFunction] = [context, output];
+  const arg: [Context, PrintFunction] = [context, print];
 
   for (const node of script) {
     visitNode(visitor, node, arg);

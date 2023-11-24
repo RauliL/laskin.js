@@ -1,10 +1,13 @@
+import Decimal from "decimal.js";
+
+import { isValidDate, isValidTime } from "./chrono";
+import { Quote } from "./quote";
 import {
   BooleanValue,
   DateValue,
   Month,
   MonthValue,
   NumberValue,
-  Quote,
   QuoteValue,
   RecordValue,
   StringValue,
@@ -16,8 +19,6 @@ import {
   Weekday,
   WeekdayValue,
 } from "./types";
-import Decimal from "decimal.js";
-import { isValidDate, isValidTime } from "./chrono";
 
 export const newBooleanValue = (value: boolean = false): BooleanValue => ({
   type: "Boolean",

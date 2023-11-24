@@ -3,16 +3,13 @@ import { Decimal } from "decimal.js";
 import * as api from "./api";
 import { execScript } from "./exec";
 import { Parser } from "./parser";
+import { BuiltinQuote, BuiltinQuoteCallback, Quote } from "./quote";
 import {
   BooleanValue,
-  BuiltinQuote,
-  BuiltinQuoteCallback,
   DateValue,
   Month,
   MonthValue,
   NumberValue,
-  OutputFunction,
-  Quote,
   QuoteValue,
   RangeError,
   RecordValue,
@@ -38,6 +35,8 @@ import {
   newVectorValue,
   newWeekdayValue,
 } from "./value";
+
+export type PrintFunction = (text: string) => void;
 
 export class Context implements Iterable<Value> {
   private readonly data: Value[];
@@ -252,14 +251,14 @@ export class Context implements Iterable<Value> {
 
   public exec(
     sourceCode: string,
-    output: OutputFunction,
+    print: PrintFunction,
     line: number = 1,
     column: number = 1,
   ): void {
     const parser = new Parser(sourceCode, line, column);
     const script = parser.parseScript();
 
-    execScript(this, output, script);
+    execScript(this, print, script);
   }
 
   public get symbols(): Iterable<string> {
