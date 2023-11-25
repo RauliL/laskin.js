@@ -1,4 +1,4 @@
-import { RangeError } from "../exception";
+import { RangeError, TypeError } from "../exception";
 import { NumberValue, Value, VectorValue, newNumberValue } from "../value";
 import {
   vectorValueBinaryOperator,
