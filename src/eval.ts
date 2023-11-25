@@ -10,7 +10,7 @@ import {
 } from "./chrono";
 import { Context } from "./context";
 import { NameError, SyntaxError } from "./exception";
-import { isNumber, parseNumber } from "./number";
+import { isValidNumber, parseNumberValue } from "./number";
 import { Node } from "./types";
 import {
   Value,
@@ -51,8 +51,8 @@ const visitor: NodeVisitor<Value, Context> = {
       return newBooleanValue(false);
     } else if (id === "drop") {
       return context.pop();
-    } else if (isNumber(id)) {
-      return parseNumber(id);
+    } else if (isValidNumber(id)) {
+      return parseNumberValue(id);
     } else if (matchesDatePattern(id)) {
       return parseDateValue(id);
     } else if (matchesTimePattern(id)) {

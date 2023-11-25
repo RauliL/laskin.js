@@ -1,6 +1,6 @@
 import { Context } from "../context";
 import { RangeError } from "../exception";
-import { isNumber, parseNumber } from "../number";
+import { isValidNumber, parseNumberValue } from "../number";
 import { BuiltinQuoteCallback, ScriptedQuote } from "../quote";
 import { Parser } from "../parser";
 import { newNumberValue, newStringValue } from "../value";
@@ -189,11 +189,11 @@ const w_toQuote = (context: Context) => {
 const w_toNumber = (context: Context) => {
   const string = context.popString();
 
-  if (!isNumber(string)) {
+  if (!isValidNumber(string)) {
     throw new RangeError("Cannot convert given string into number.");
   }
 
-  context.push(parseNumber(string));
+  context.push(parseNumberValue(string));
 };
 
 export const string: [string, BuiltinQuoteCallback][] = [

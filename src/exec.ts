@@ -7,7 +7,7 @@ import {
 import { Context, PrintFunction } from "./context";
 import { evalNode } from "./eval";
 import { NameError } from "./exception";
-import { isNumber, parseNumber } from "./number";
+import { isValidNumber, parseNumberValue } from "./number";
 import { Node } from "./types";
 import { QuoteValue, Value } from "./value";
 import { NodeVisitor, visitNode } from "./visitor";
@@ -51,8 +51,8 @@ const visitor: NodeVisitor<undefined, [Context, PrintFunction]> = {
       return;
     }
 
-    if (isNumber(node.id)) {
-      context.push(parseNumber(node.id));
+    if (isValidNumber(node.id)) {
+      context.push(parseNumberValue(node.id));
       return;
     } else if (matchesDatePattern(node.id)) {
       context.push(parseDateValue(node.id));

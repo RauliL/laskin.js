@@ -5,7 +5,7 @@ import { Unit } from "./types";
 import { findUnitBySymbol, getAllUnitsOf, isBaseUnit } from "./unit";
 import { NumberValue, newNumberValue } from "./value";
 
-export const isNumber = (input: string): boolean => {
+export const isValidNumber = (input: string): boolean => {
   const { length } = input;
   let start: number;
   let dotSeen = false;
@@ -39,7 +39,7 @@ export const isNumber = (input: string): boolean => {
   return true;
 };
 
-export const parseNumber = (input: string): NumberValue => {
+export const parseNumberValue = (input: string): NumberValue => {
   const { length } = input;
   let start: number;
   let dotSeen = false;
