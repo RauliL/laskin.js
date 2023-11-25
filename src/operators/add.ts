@@ -138,8 +138,8 @@ const addNumberToWeekday = (a: WeekdayValue, b: NumberValue): WeekdayValue => {
   if (delta.comparedTo(0) < 0) {
     delta = delta.neg();
     while (delta.comparedTo(0) > 0) {
-      if (current === Weekday.Monday) {
-        current = Weekday.Sunday;
+      if (current === Weekday.Sunday) {
+        current = Weekday.Saturday;
       } else {
         --current;
       }
@@ -147,8 +147,8 @@ const addNumberToWeekday = (a: WeekdayValue, b: NumberValue): WeekdayValue => {
     }
   } else {
     while (delta.comparedTo(0) > 0) {
-      if (current === Weekday.Sunday) {
-        current = Weekday.Monday;
+      if (current === Weekday.Saturday) {
+        current = Weekday.Sunday;
       } else {
         ++current;
       }
@@ -165,14 +165,14 @@ export const add = (a: Value, b: Value): Value => {
       case "Number":
         return addNumber(a as NumberValue, b as NumberValue);
 
-      case "Vector":
-        return addVector(a as VectorValue, b as VectorValue);
-
       case "Record":
         return addRecord(a as RecordValue, b as RecordValue);
 
       case "String":
         return addString(a as StringValue, b as StringValue);
+
+      case "Vector":
+        return addVector(a as VectorValue, b as VectorValue);
     }
   } else if (b.type === "Number") {
     switch (a.type) {

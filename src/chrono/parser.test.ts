@@ -41,9 +41,12 @@ describe("parseDateValue()", () => {
     });
   });
 
-  it("should throw exception if given string is not valid date", () => {
-    expect(() => parseDateValue("2023-01-50")).toThrow(SyntaxError);
-  });
+  it.each(["2023-01-50", "fail"])(
+    "should throw exception if given string is not valid date",
+    (input) => {
+      expect(() => parseDateValue(input)).toThrow(SyntaxError);
+    },
+  );
 });
 
 describe("parseTimeValue()", () => {
@@ -56,9 +59,12 @@ describe("parseTimeValue()", () => {
     });
   });
 
-  it("should throw exception if given string is not valid time", () => {
-    expect(() => parseTimeValue("23:70:05")).toThrow(SyntaxError);
-  });
+  it.each(["23:70:05", "fail"])(
+    "should throw exception if given string is not valid time",
+    (input) => {
+      expect(() => parseTimeValue(input)).toThrow(SyntaxError);
+    },
+  );
 });
 
 describe("parseMonthValue()", () => {
