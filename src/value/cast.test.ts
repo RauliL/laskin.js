@@ -74,6 +74,11 @@ describe("valueAsNumber()", () => {
       valueAsNumber(newNumberValue(1, units.kilogram), units.meter),
     ).toThrow(TypeError));
 
+  it("should accept number without measurement unit even with list of accepted units", () =>
+    expect(valueAsNumber(newNumberValue(15), units.centimeter)).toBeInstanceOf(
+      Decimal,
+    ));
+
   it("should throw exception for non-number values", () =>
     expect(() => valueAsNumber(newStringValue("foo"))).toThrow(TypeError));
 });

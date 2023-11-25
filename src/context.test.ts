@@ -306,6 +306,12 @@ describe("class Context", () => {
       expect(context.peek()).toHaveProperty("type", "Boolean");
       expect(context).toHaveLength(1);
     });
+
+    it("should default to `false`", () => {
+      context.pushBoolean();
+
+      expect(context.peek()).toHaveProperty("value", false);
+    });
   });
 
   describe("pushDate()", () => {
@@ -326,6 +332,12 @@ describe("class Context", () => {
         value: Month.May,
       });
       expect(context).toHaveLength(1);
+    });
+
+    it("should default to January", () => {
+      context.pushMonth();
+
+      expect(context.peek()).toHaveProperty("value", Month.January);
     });
   });
 
@@ -366,6 +378,12 @@ describe("class Context", () => {
       });
       expect(context).toHaveLength(1);
     });
+
+    it("should default to empty string", () => {
+      context.pushString();
+
+      expect(context.peek()).toHaveProperty("value", "");
+    });
   });
 
   describe("pushTime()", () => {
@@ -395,6 +413,12 @@ describe("class Context", () => {
         value: Weekday.Tuesday,
       });
       expect(context).toHaveLength(1);
+    });
+
+    it("should default to Sunday", () => {
+      context.pushWeekday();
+
+      expect(context.peek()).toHaveProperty("value", Weekday.Sunday);
     });
   });
 
