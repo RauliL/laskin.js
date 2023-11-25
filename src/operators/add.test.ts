@@ -1,5 +1,5 @@
 import { Month, Weekday } from "../chrono";
-import { TypeError, UnitError } from "../exception";
+import { RangeError, TypeError, UnitError } from "../exception";
 import { units } from "../unit";
 import {
   newDateValue,
@@ -86,6 +86,12 @@ describe("add()", () => {
     ).toBe(0);
   });
 
+  it("should throw exception if trying to add two different sized vectors together", () => {
+    expect(() =>
+      add(newVectorValue([newNumberValue(1)]), newVectorValue([])),
+    ).toThrow(RangeError);
+  });
+
   it.each([units.day, undefined])(
     "should be able to add days into date",
     (unit) => {
@@ -109,17 +115,16 @@ describe("add()", () => {
     ).toThrow(TypeError);
   });
 
-  it("should allow iteration of months", () => {
-    expect(add(newMonthValue(Month.January), newNumberValue(3))).toHaveProperty(
+  it.each([
+    [Month.January, 3, Month.April],
+    [Month.December, 1, Month.January],
+    [Month.January, -1, Month.December],
+    [Month.December, -4, Month.August],
+  ])("should allow iteration of months", (month, delta, expectedResult) => {
+    expect(add(newMonthValue(month), newNumberValue(delta))).toHaveProperty(
       "value",
-      Month.April,
+      expectedResult,
     );
-  });
-
-  it("should allow reverse iteration of months", () => {
-    expect(
-      add(newMonthValue(Month.January), newNumberValue(-1)),
-    ).toHaveProperty("value", Month.December);
   });
 
   it("should not allow addition of numbers with units to a month", () => {
@@ -175,21 +180,27 @@ describe("add()", () => {
     ).toThrow(TypeError);
   });
 
-  it("should allow iteration of weekdays", () => {
-    expect(
-      add(newWeekdayValue(Weekday.Monday), newNumberValue(3)),
-    ).toHaveProperty("value", Weekday.Thursday);
-  });
-
-  it("should allow reverse iteration of weekdays", () => {
-    expect(
-      add(newWeekdayValue(Weekday.Sunday), newNumberValue(-1)),
-    ).toHaveProperty("value", Weekday.Saturday);
+  it.each([
+    [Weekday.Monday, 3, Weekday.Thursday],
+    [Weekday.Friday, 3, Weekday.Monday],
+    [Weekday.Sunday, -1, Weekday.Saturday],
+    [Weekday.Saturday, -2, Weekday.Thursday],
+  ])("should allow iteration of weekdays", (weekday, delta, expectedResult) => {
+    expect(add(newWeekdayValue(weekday), newNumberValue(delta))).toHaveProperty(
+      "value",
+      expectedResult,
+    );
   });
 
   it("should not allow addition of numbers with units to a weekday", () => {
     expect(() =>
       add(newWeekdayValue(Weekday.Monday), newNumberValue(5, units.gram)),
+    ).toThrow(TypeError);
+  });
+
+  it("should not allow addition of non-matching values together", () => {
+    expect(() =>
+      add(newStringValue("foo"), newWeekdayValue(Weekday.Monday)),
     ).toThrow(TypeError);
   });
 });
