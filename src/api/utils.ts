@@ -1,5 +1,5 @@
 import { Context, PrintFunction } from "../context";
-import { NameError } from "../exception";
+import { LaskinError, NameError } from "../exception";
 import { BuiltinQuoteCallback } from "../quote";
 import {
   add,
@@ -34,47 +34,13 @@ const operator =
     context.push(callback(a, b));
   };
 
-const w_eq = (context: Context) => {
-  const b = context.pop();
-  const a = context.pop();
+const booleanOperator =
+  (callback: (a: Value, b: Value) => boolean) => (context: Context) => {
+    const b = context.pop();
+    const a = context.pop();
 
-  context.pushBoolean(equals(a, b));
-};
-
-const w_ne = (context: Context) => {
-  const b = context.pop();
-  const a = context.pop();
-
-  context.pushBoolean(!equals(a, b));
-};
-
-const w_gt = (context: Context) => {
-  const b = context.pop();
-  const a = context.pop();
-
-  context.pushBoolean(compare(a, b) > 0);
-};
-
-const w_lt = (context: Context) => {
-  const b = context.pop();
-  const a = context.pop();
-
-  context.pushBoolean(compare(a, b) < 0);
-};
-
-const w_gte = (context: Context) => {
-  const b = context.pop();
-  const a = context.pop();
-
-  context.pushBoolean(compare(a, b) >= 0);
-};
-
-const w_lte = (context: Context) => {
-  const b = context.pop();
-  const a = context.pop();
-
-  context.pushBoolean(compare(a, b) <= 0);
-};
+    context.pushBoolean(callback(a, b));
+  };
 
 const w_clear = (context: Context) => {
   context.clear();
@@ -157,6 +123,10 @@ const w_stackPreview = (context: Context, print: PrintFunction) => {
   }
 };
 
+const w_quit = () => {
+  throw new LaskinError("Quit has not been implemented.");
+};
+
 const w_if = (context: Context, print: PrintFunction) => {
   const quote = context.popQuote();
   const condition = context.popBoolean();
@@ -224,6 +194,12 @@ const w_symbols = (context: Context) => {
   context.pushVector(result);
 };
 
+const w_include = (context: Context) => {
+  context.popString();
+
+  throw new LaskinError("Include has not been implemented.");
+};
+
 export const utils: [string, BuiltinQuoteCallback][] = [
   // Constants.
   ["true", constant(() => newBooleanValue(true))],
@@ -232,12 +208,12 @@ export const utils: [string, BuiltinQuoteCallback][] = [
   ["e", constant(() => newNumberValue(Math.E))],
 
   // Common operators.
-  ["=", w_eq],
-  ["<>", w_ne],
-  [">", w_gt],
-  ["<", w_lt],
-  [">=", w_gte],
-  ["<=", w_lte],
+  ["=", booleanOperator((a, b) => equals(a, b))],
+  ["<>", booleanOperator((a, b) => !equals(a, b))],
+  [">", booleanOperator((a, b) => compare(a, b) > 0)],
+  ["<", booleanOperator((a, b) => compare(a, b) < 0)],
+  [">=", booleanOperator((a, b) => compare(a, b) >= 0)],
+  ["<=", booleanOperator((a, b) => compare(a, b) <= 0)],
   ["+", operator(add)],
   ["-", operator(substract)],
   ["*", operator(multiply)],
@@ -275,7 +251,7 @@ export const utils: [string, BuiltinQuoteCallback][] = [
   [".s", w_stackPreview],
 
   // Control flow.
-  // TODO: quit
+  ["quit", w_quit],
   ["if", w_if],
   ["if-else", w_ifElse],
   ["while", w_while],
@@ -286,5 +262,5 @@ export const utils: [string, BuiltinQuoteCallback][] = [
   ["delete", w_delete],
   ["symbols", w_symbols],
 
-  // TODO: include
+  ["include", w_include],
 ];
