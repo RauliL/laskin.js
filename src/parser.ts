@@ -1,5 +1,3 @@
-import { ScriptedQuote } from "./quote";
-import { SyntaxError } from "./exception";
 import {
   DefinitionNode,
   LiteralNode,
@@ -7,7 +5,9 @@ import {
   RecordLiteralNode,
   SymbolNode,
   VectorLiteralNode,
-} from "./types";
+} from "./ast";
+import { ScriptedQuote } from "./quote";
+import { SyntaxError } from "./exception";
 import { StringValue, newQuoteValue, newStringValue } from "./value";
 
 const isSpace = /^\s$/;

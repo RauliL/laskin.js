@@ -1,3 +1,4 @@
+import { Node, NodeVisitor, visitNode } from "./ast";
 import {
   isValidMonth,
   isValidWeekday,
@@ -11,14 +12,12 @@ import {
 import { Context } from "./context";
 import { NameError, SyntaxError } from "./exception";
 import { isValidNumber, parseNumberValue } from "./number";
-import { Node } from "./types";
 import {
   Value,
   newBooleanValue,
   newRecordValue,
   newVectorValue,
 } from "./value";
-import { NodeVisitor, visitNode } from "./visitor";
 
 const visitor: NodeVisitor<Value, Context> = {
   visitDefinition(node) {

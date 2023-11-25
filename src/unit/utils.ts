@@ -1,6 +1,6 @@
 import { UnitError } from "../exception";
-import { Unit, UnitType } from "../types";
 import * as units from "./const";
+import { Unit, UnitType } from "./types";
 
 export const isBaseUnit = (unit: Unit): boolean => unit.multiplier === 1;
 

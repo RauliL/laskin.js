@@ -1,6 +1,6 @@
 import { secondsInDay, secondsInHour, secondsInMinute } from "date-fns";
 
-import { Unit } from "../types";
+import { Unit } from "./types";
 
 // Supported length units.
 export const millimeter: Readonly<Unit> = {

@@ -1,7 +1,6 @@
+import { Node, NodeVisitor, visitNode } from "./ast";
 import { valueToString } from "./to-string";
-import { Node } from "./types";
 import { Value, ValueVisitor, visitValue } from "./value";
-import { NodeVisitor, visitNode } from "./visitor";
 
 const valueVisitor: ValueVisitor<string> = {
   visitBoolean(value) {

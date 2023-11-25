@@ -1,3 +1,4 @@
+import { Node, NodeVisitor, visitNode } from "./ast";
 import {
   matchesDatePattern,
   matchesTimePattern,
@@ -8,9 +9,7 @@ import { Context, PrintFunction } from "./context";
 import { evalNode } from "./eval";
 import { NameError } from "./exception";
 import { isValidNumber, parseNumberValue } from "./number";
-import { Node } from "./types";
 import { QuoteValue, Value } from "./value";
-import { NodeVisitor, visitNode } from "./visitor";
 
 const visitor: NodeVisitor<undefined, [Context, PrintFunction]> = {
   visitDefinition(node, [context]) {

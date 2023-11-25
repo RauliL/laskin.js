@@ -3,7 +3,7 @@ import Decimal from "decimal.js";
 import { Month, Weekday, isValidDate, isValidTime } from "../chrono";
 import { TypeError } from "../exception";
 import { Quote } from "../quote";
-import { Unit } from "../types";
+import { Unit } from "../unit";
 import {
   BooleanValue,
   DateValue,

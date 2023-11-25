@@ -2,7 +2,7 @@ import { Decimal } from "decimal.js";
 
 import { Month, Weekday } from "../chrono";
 import { Quote } from "../quote";
-import { Unit } from "../types";
+import { Unit } from "../unit";
 import {
   BooleanValue,
   DateValue,

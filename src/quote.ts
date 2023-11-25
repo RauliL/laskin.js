@@ -1,7 +1,7 @@
+import { Node } from "./ast";
 import { Context, PrintFunction } from "./context";
 import { execScript } from "./exec";
 import { nodeToSource } from "./to-source";
-import { Node } from "./types";
 
 export abstract class Quote {
   public abstract call(context: Context, print: PrintFunction): void;

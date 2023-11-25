@@ -1,4 +1,4 @@
-import { Position } from "./types";
+import { Position } from "./ast";
 
 export class LaskinError extends Error {
   public readonly position?: Position;

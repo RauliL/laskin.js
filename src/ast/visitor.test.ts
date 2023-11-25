@@ -7,8 +7,8 @@ import {
   RecordLiteralNode,
   SymbolNode,
   VectorLiteralNode,
-} from "../types";
-import { NodeVisitor, visitNode } from "./ast";
+} from "./types";
+import { NodeVisitor, visitNode } from "./visitor";
 
 describe("visitNode()", () => {
   const visitDefinition = jest.fn();

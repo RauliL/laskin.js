@@ -6,7 +6,7 @@ import {
   RecordLiteralNode,
   SymbolNode,
   VectorLiteralNode,
-} from "../types";
+} from "./types";
 
 export type NodeVisitor<R, A = undefined> = {
   visitDefinition: (node: DefinitionNode, arg: A) => R;
