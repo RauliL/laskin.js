@@ -1,5 +1,6 @@
 import Decimal from "decimal.js";
 
+import { RangeError } from "../exception";
 import { toBaseUnit, unitCheck, unitConversion } from "../number";
 import { getBaseUnitOf } from "../unit";
 import { NumberValue, Value, VectorValue, newVectorValue } from "../value";
