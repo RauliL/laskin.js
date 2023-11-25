@@ -1,6 +1,7 @@
 import { Decimal } from "decimal.js";
 
 import { Month, Weekday } from "../chrono";
+import { TypeError } from "../exception";
 import { Quote } from "../quote";
 import { Unit } from "../unit";
 import {
