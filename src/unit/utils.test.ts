@@ -1,6 +1,6 @@
 import { getBaseUnitOf } from ".";
 import { UnitError } from "../exception";
-import { UnitType } from "../types";
+import { UnitType } from "./types";
 import { findUnitBySymbol, getAllUnitsOf, isBaseUnit } from "./utils";
 
 describe("isBaseUnit()", () => {

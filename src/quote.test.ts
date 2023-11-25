@@ -1,7 +1,7 @@
+import { LiteralNode, SymbolNode } from "./ast";
 import { Context } from "./context";
 import { BuiltinQuote, ScriptedQuote } from "./quote";
 import { newStringValue } from "./value";
-import { LiteralNode, SymbolNode } from "./types";
 
 describe("class BuiltinQuote", () => {
   describe("call()", () => {

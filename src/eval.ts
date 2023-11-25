@@ -75,5 +75,8 @@ const visitor: NodeVisitor<Value, Context> = {
   },
 };
 
+/**
+ * Evaluates given AST node as expression.
+ */
 export const evalNode = (context: Context, node: Node): Value =>
   visitNode(visitor, node, context);

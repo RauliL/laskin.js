@@ -69,6 +69,9 @@ const visitor: NodeVisitor<undefined, [Context, PrintFunction]> = {
   },
 };
 
+/**
+ * Executes given AST nodes as statements.
+ */
 export const execScript = (
   context: Context,
   print: PrintFunction,
