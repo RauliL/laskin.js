@@ -1,5 +1,6 @@
 import Decimal from "decimal.js";
 
+import { TypeError } from "../exception";
 import {
   numberValueBinaryOperator,
   vectorValueBinaryOperator,
