@@ -24,10 +24,10 @@ export const kilometer: Readonly<Unit> = {
   multiplier: 1000,
 };
 export const allLengthUnits: Readonly<Readonly<Unit>[]> = [
-  millimeter,
-  centimeter,
-  meter,
   kilometer,
+  meter,
+  centimeter,
+  millimeter,
 ];
 
 // Supported mass units.
@@ -47,9 +47,9 @@ export const kilogram: Readonly<Unit> = {
   multiplier: 1,
 };
 export const allMassUnits: Readonly<Readonly<Unit>[]> = [
-  milligram,
-  gram,
   kilogram,
+  gram,
+  milligram,
 ];
 
 // Supported time units.
@@ -79,9 +79,9 @@ export const day: Readonly<Unit> = {
   multiplier: secondsInDay,
 };
 export const allTimeUnits: Readonly<Readonly<Unit>[]> = [
-  millisecond,
-  second,
-  minute,
-  hour,
   day,
+  hour,
+  minute,
+  second,
+  millisecond,
 ];

@@ -12,7 +12,7 @@ import { multiply } from "./multiply";
 describe("multiply()", () => {
   it.each([
     [5, undefined, 2, undefined, 10, undefined],
-    [5, units.meter, 2, units.kilometer, 10000, units.meter],
+    [5, units.meter, 2, units.kilometer, 10, units.kilometer],
   ])(
     "should be able to multiply two numbers with each other",
     (value1, unit1, value2, unit2, expectedValue, expectedUnit) => {

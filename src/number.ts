@@ -115,9 +115,7 @@ export const unitConversion = (
       const { multiplier } = unit;
 
       if (multiplier > 0 && value.comparedTo(multiplier) >= 0) {
-        value = value.div(multiplier);
-
-        return newNumberValue(value, unit);
+        return newNumberValue(value.div(multiplier), unit);
       }
     }
   }
