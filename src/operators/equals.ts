@@ -1,3 +1,4 @@
+import { toBaseUnit } from "../number";
 import {
   BooleanValue,
   DateValue,
@@ -21,14 +22,14 @@ const eqMonth = (a: MonthValue, b: MonthValue): boolean => a.value === b.value;
 
 const eqNumber = (a: NumberValue, b: NumberValue): boolean => {
   if (a.unit != null) {
-    if (b.unit == null || a.unit.symbol !== b.unit.symbol) {
+    if (b.unit == null || a.unit.type !== b.unit.type) {
       return false;
     }
   } else if (b.unit != null) {
     return false;
   }
 
-  return a.value.equals(b.value);
+  return toBaseUnit(a).equals(toBaseUnit(b));
 };
 
 const eqRecord = (a: RecordValue, b: RecordValue): boolean => {
