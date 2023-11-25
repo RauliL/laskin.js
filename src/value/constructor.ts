@@ -1,9 +1,9 @@
 import Decimal from "decimal.js";
 
-import { isValidDate, isValidTime } from "../chrono";
+import { Month, Weekday, isValidDate, isValidTime } from "../chrono";
 import { TypeError } from "../exception";
 import { Quote } from "../quote";
-import { Month, Unit, Weekday } from "../types";
+import { Unit } from "../types";
 import {
   BooleanValue,
   DateValue,

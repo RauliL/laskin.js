@@ -1,6 +1,6 @@
+import { Weekday } from "../chrono";
 import { Context } from "../context";
 import { BuiltinQuoteCallback } from "../quote";
-import { Weekday } from "../types";
 
 const weekdayConstant = (weekday: Weekday) => (context: Context) => {
   context.pushWeekday(weekday);

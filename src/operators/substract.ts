@@ -9,13 +9,14 @@ import {
 import Decimal from "decimal.js";
 
 import {
+  Month,
+  Weekday,
   dateToDateValue,
   dateToTimeValue,
   dateValueToDate,
   timeValueToDate,
 } from "../chrono";
 import { TypeError } from "../exception";
-import { Month, Weekday } from "../types";
 import { units } from "../unit";
 import {
   numberValueBinaryOperator,

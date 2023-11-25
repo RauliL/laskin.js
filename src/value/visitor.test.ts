@@ -1,6 +1,6 @@
+import { Month, Weekday } from "../chrono";
 import { LaskinError } from "../exception";
 import { ScriptedQuote } from "../quote";
-import { Month, Weekday } from "../types";
 import {
   newBooleanValue,
   newDateValue,

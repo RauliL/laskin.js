@@ -1,9 +1,14 @@
+import {
+  matchesDatePattern,
+  matchesTimePattern,
+  parseDateValue,
+  parseTimeValue,
+} from "./chrono";
 import { Context, PrintFunction } from "./context";
 import { evalNode } from "./eval";
 import { NameError } from "./exception";
-import { Node } from "./types";
-import { isDate, isTime, parseDate, parseTime } from "./chrono";
 import { isNumber, parseNumber } from "./number";
+import { Node } from "./types";
 import { QuoteValue, Value } from "./value";
 import { NodeVisitor, visitNode } from "./visitor";
 
@@ -49,11 +54,11 @@ const visitor: NodeVisitor<undefined, [Context, PrintFunction]> = {
     if (isNumber(node.id)) {
       context.push(parseNumber(node.id));
       return;
-    } else if (isDate(node.id)) {
-      context.push(parseDate(node.id));
+    } else if (matchesDatePattern(node.id)) {
+      context.push(parseDateValue(node.id));
       return;
-    } else if (isTime(node.id)) {
-      context.push(parseTime(node.id));
+    } else if (matchesTimePattern(node.id)) {
+      context.push(parseTimeValue(node.id));
       return;
     }
 

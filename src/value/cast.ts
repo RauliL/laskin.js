@@ -1,7 +1,8 @@
 import { Decimal } from "decimal.js";
-import { Quote } from "../quote";
 
-import { Month, Unit, Weekday } from "../types";
+import { Month, Weekday } from "../chrono";
+import { Quote } from "../quote";
+import { Unit } from "../types";
 import {
   BooleanValue,
   DateValue,

@@ -1,24 +1,22 @@
+import {
+  isValidMonth,
+  isValidWeekday,
+  matchesDatePattern,
+  matchesTimePattern,
+  parseDateValue,
+  parseMonthValue,
+  parseTimeValue,
+  parseWeekdayValue,
+} from "./chrono";
 import { Context } from "./context";
 import { NameError, SyntaxError } from "./exception";
-import { Node } from "./types";
-import {
-  isDate,
-  isMonth,
-  isTime,
-  isWeekday,
-  parseDate,
-  parseMonth,
-  parseTime,
-  parseWeekday,
-} from "./chrono";
 import { isNumber, parseNumber } from "./number";
+import { Node } from "./types";
 import {
   Value,
   newBooleanValue,
-  newMonthValue,
   newRecordValue,
   newVectorValue,
-  newWeekdayValue,
 } from "./value";
 import { NodeVisitor, visitNode } from "./visitor";
 
@@ -55,14 +53,14 @@ const visitor: NodeVisitor<Value, Context> = {
       return context.pop();
     } else if (isNumber(id)) {
       return parseNumber(id);
-    } else if (isDate(id)) {
-      return parseDate(id);
-    } else if (isTime(id)) {
-      return parseTime(id);
-    } else if (isMonth(id)) {
-      return newMonthValue(parseMonth(id));
-    } else if (isWeekday(id)) {
-      return newWeekdayValue(parseWeekday(id));
+    } else if (matchesDatePattern(id)) {
+      return parseDateValue(id);
+    } else if (matchesTimePattern(id)) {
+      return parseTimeValue(id);
+    } else if (isValidMonth(id)) {
+      return parseMonthValue(id);
+    } else if (isValidWeekday(id)) {
+      return parseWeekdayValue(id);
     }
 
     throw new NameError(
