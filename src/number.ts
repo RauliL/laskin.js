@@ -41,7 +41,7 @@ export const isValidNumber = (input: string): boolean => {
 export const parseNumberValue = (input: string): NumberValue => {
   const { length } = input;
   let start: number;
-  let end = input.length;
+  const end = input.length;
   let dotSeen = false;
 
   if (!length) {
