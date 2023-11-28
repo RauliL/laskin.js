@@ -2,7 +2,7 @@ import { Context } from "../context";
 import { RangeError } from "../exception";
 import { isValidNumber, parseNumberValue } from "../number";
 import { BuiltinQuoteCallback, ScriptedQuote } from "../quote";
-import { Parser } from "../parser";
+import { parse } from "../parser";
 import { newNumberValue, newStringValue } from "../value";
 
 const w_length = (context: Context) => {
@@ -179,11 +179,7 @@ const w_at = (context: Context) => {
 };
 
 const w_toQuote = (context: Context) => {
-  const source = context.popString();
-  const parser = new Parser(source, 1, 1);
-  const script = parser.parseScript();
-
-  context.pushQuote(new ScriptedQuote(script));
+  context.pushQuote(new ScriptedQuote(parse(context.popString())));
 };
 
 const w_toNumber = (context: Context) => {

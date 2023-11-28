@@ -1,6 +1,5 @@
 import { Node } from "./ast";
 import { Context, PrintFunction } from "./context";
-import { execScript } from "./exec";
 import { nodeToSource } from "./to-source";
 
 export abstract class Quote {
@@ -42,7 +41,7 @@ export class ScriptedQuote extends Quote {
   }
 
   public call(context: Context, print: PrintFunction): void {
-    execScript(context, print, this.nodes);
+    context.exec(this.nodes, print);
   }
 
   public toSource(): string {

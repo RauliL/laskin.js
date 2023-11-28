@@ -41,6 +41,7 @@ export const isValidNumber = (input: string): boolean => {
 export const parseNumberValue = (input: string): NumberValue => {
   const { length } = input;
   let start: number;
+  let end = input.length;
   let dotSeen = false;
 
   if (!length) {
@@ -58,7 +59,7 @@ export const parseNumberValue = (input: string): NumberValue => {
 
     if (c === ".") {
       if (dotSeen || i === start || i + 1 > length) {
-        break;
+        throw new SyntaxError("Unexpected `.', missing number.");
       }
       dotSeen = true;
     } else if (!/^[0-9]$/.test(c)) {
@@ -73,18 +74,16 @@ export const parseNumberValue = (input: string): NumberValue => {
     }
   }
 
-  return newNumberValue(input);
+  return newNumberValue(input.substring(0, end));
 };
 
 export const toBaseUnit = (number: NumberValue): Decimal => {
   const { unit, value } = number;
 
   if (unit && !isBaseUnit(unit)) {
-    if (unit.multiplier > 0) {
-      return value.mul(unit.multiplier);
-    } else if (unit.multiplier < 0) {
-      return value.div(-unit.multiplier);
-    }
+    return unit.multiplier > 0
+      ? value.mul(unit.multiplier)
+      : value.div(-unit.multiplier);
   }
 
   return value;

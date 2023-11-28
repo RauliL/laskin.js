@@ -1,10 +1,11 @@
 import { Decimal } from "decimal.js";
 
 import * as api from "./api";
+import { Node } from "./ast";
 import { Month, Weekday } from "./chrono";
 import { RangeError, TypeError } from "./exception";
 import { execScript } from "./exec";
-import { Parser } from "./parser";
+import { parse } from "./parser";
 import { BuiltinQuote, BuiltinQuoteCallback, Quote } from "./quote";
 import { Unit } from "./unit";
 import {
@@ -246,14 +247,18 @@ export class Context implements Iterable<Value> {
   }
 
   public exec(
-    sourceCode: string,
+    sourceCode: string | Node[],
     print: PrintFunction,
     line: number = 1,
     column: number = 1,
   ): void {
-    const parser = new Parser(sourceCode, line, column);
-    const script = parser.parseScript();
+    let script: Node[];
 
+    if (Array.isArray(sourceCode)) {
+      script = sourceCode as Node[];
+    } else {
+      script = parse(sourceCode, line, column);
+    }
     execScript(this, print, script);
   }
 

@@ -13,7 +13,7 @@ import { StringValue, newQuoteValue, newStringValue } from "./value";
 const isSpace = /^\s$/;
 const isSymbol = /^[^[\](){},\s]$/u;
 
-export class Parser {
+class Parser {
   private readonly source: string;
   private offset: number;
   private line: number;
@@ -507,3 +507,9 @@ export class Parser {
     }
   }
 }
+
+export const parse = (
+  sourceCode: string,
+  line: number = 1,
+  column: number = 1,
+): Node[] => new Parser(sourceCode, line, column).parseScript();
