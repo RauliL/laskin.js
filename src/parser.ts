@@ -161,7 +161,7 @@ class Parser {
     if (!this.peekRead("]")) {
       for (;;) {
         if (this.eof()) {
-          throw new SyntaxError("Unterminated vector literal: Missing `)'.", {
+          throw new SyntaxError("Unterminated vector literal: Missing `]'.", {
             line,
             column,
           });
