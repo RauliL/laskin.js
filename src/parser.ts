@@ -43,13 +43,6 @@ class Parser {
   private parseStatement(): Node {
     this.skipWhitespace();
 
-    if (this.eof()) {
-      throw new SyntaxError("Unexpected end of input; Missing statement.", {
-        line: this.line,
-        column: this.column,
-      });
-    }
-
     switch (this.source[this.offset]) {
       case "(":
         return this.parseQuoteLiteral();
@@ -106,15 +99,8 @@ class Parser {
     const line = this.line;
     const column = this.column;
 
-    if (!this.peekRead("(")) {
-      throw new SyntaxError(
-        `Unexpected ${
-          this.eof() ? "end of input" : "input"
-        }; Missing quote literal.`,
-        { line, column },
-      );
-    }
-
+    // Skip "(" and excess whitespace.
+    this.read();
     this.skipWhitespace();
 
     if (!this.peekRead(")")) {
@@ -147,15 +133,8 @@ class Parser {
     const line = this.line;
     const column = this.column;
 
-    if (!this.peekRead("[")) {
-      throw new SyntaxError(
-        `Unexpected ${
-          this.eof() ? "end of input" : "input"
-        }; Missing vector literal.`,
-        { line, column },
-      );
-    }
-
+    // Skip "[" and excess whitespace.
+    this.read();
     this.skipWhitespace();
 
     if (!this.peekRead("]")) {
@@ -198,15 +177,8 @@ class Parser {
     const line = this.line;
     const column = this.column;
 
-    if (!this.peekRead("{")) {
-      throw new SyntaxError(
-        `Unexpected ${
-          this.eof() ? "end of input" : "input"
-        }; Missing record literal.`,
-        { line, column },
-      );
-    }
-
+    // Skip "{" and excess whitespace.
+    this.read();
     this.skipWhitespace();
 
     if (!this.peekRead("}")) {
