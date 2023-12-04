@@ -1,13 +1,15 @@
 import { Month, Weekday } from "./chrono";
 import { Context } from "./context";
 import { RangeError, SyntaxError, TypeError } from "./exception";
-import { ScriptedQuote } from "./quote";
+import { BuiltinQuote, ScriptedQuote } from "./quote";
+import { valueToString } from "./to-string";
 import {
   newBooleanValue,
   newDateValue,
   newNumberValue,
   newStringValue,
   newTimeValue,
+  QuoteValue,
 } from "./value";
 
 describe("class Context", () => {
@@ -437,6 +439,23 @@ describe("class Context", () => {
 
     it("should throw an exception if syntax error is encountered", () => {
       expect(() => context.exec("(", jest.fn())).toThrow(SyntaxError);
+    });
+
+    it("should use `console.log` as it's default output", () => {
+      const consoleLogSpy = jest
+        .spyOn(console, "log")
+        .mockImplementation(() => {});
+
+      context.define(".", {
+        type: "Quote",
+        quote: new BuiltinQuote((context, print) =>
+          print(valueToString(context.pop())),
+        ),
+      } as QuoteValue);
+
+      context.exec("'hello' .");
+
+      expect(consoleLogSpy).toHaveBeenCalledWith("hello");
     });
   });
 

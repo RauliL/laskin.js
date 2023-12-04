@@ -248,7 +248,7 @@ export class Context implements Iterable<Value> {
 
   public exec(
     sourceCode: string | Node[],
-    print: PrintFunction,
+    print: PrintFunction = console.log,
     line: number = 1,
     column: number = 1,
   ): void {
