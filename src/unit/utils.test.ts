@@ -2,7 +2,12 @@ import { describe, expect, it } from "vitest";
 
 import { UnitError } from "../exception";
 import { UnitType } from "./types";
-import { findUnitBySymbol, getAllUnitsOf, getBaseUnitOf, isBaseUnit } from "./utils";
+import {
+  findUnitBySymbol,
+  getAllUnitsOf,
+  getBaseUnitOf,
+  isBaseUnit,
+} from "./utils";
 
 describe("isBaseUnit()", () => {
   it.each([

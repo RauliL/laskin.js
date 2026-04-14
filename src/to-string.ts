@@ -16,8 +16,22 @@ const visitor: ValueVisitor<string> = {
     return Month[value.value].toLowerCase();
   },
 
-  visitNumber(value) {
-    return `${value.value}${value.unit?.symbol ?? ""}`;
+  visitNumber(v) {
+    const { unit, value } = v;
+    const parts = [];
+
+    if (value.isNaN()) {
+      parts.push("nan");
+    } else if (value.isFinite()) {
+      parts.push(`${value}`);
+    } else {
+      parts.push(value.isPositive() ? "inf" : "-inf");
+    }
+    if (unit) {
+      parts.push(unit.symbol);
+    }
+
+    return parts.join("");
   },
 
   visitQuote(value) {

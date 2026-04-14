@@ -1,6 +1,10 @@
 import { Decimal } from "decimal.js";
 
-import { numberValueBinaryOperator, vectorValueBinaryOperator, vectorValueNumberBinaryOperator } from "./utils";
+import {
+  numberValueBinaryOperator,
+  vectorValueBinaryOperator,
+  vectorValueNumberBinaryOperator,
+} from "./utils";
 import { NumberValue, Value, VectorValue } from "../value";
 
 const modNumber = (a: NumberValue, b: NumberValue): NumberValue =>
@@ -31,4 +35,4 @@ export const modulo = (a: Value, b: Value): Value => {
   throw new TypeError(
     `Cannot module ${a.type.toLowerCase()} with ${b.type.toLowerCase()}.`,
   );
-}
+};

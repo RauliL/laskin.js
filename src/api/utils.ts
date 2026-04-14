@@ -240,6 +240,9 @@ export const utils: [string, BuiltinQuoteCallback][] = [
   ["false", constant(() => newBooleanValue(false))],
   ["pi", constant(() => newNumberValue(Math.PI))],
   ["e", constant(() => newNumberValue(Math.E))],
+  ["inf", constant(() => newNumberValue(Infinity))],
+  ["-inf", constant(() => newNumberValue(-Infinity))],
+  ["nan", constant(() => newNumberValue(Number.NaN))],
 
   // Common operators.
   ["=", booleanOperator((a, b) => equals(a, b))],

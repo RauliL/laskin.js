@@ -56,6 +56,14 @@ const w_dropUnit = (context: Context) => {
   context.pushNumber(context.popNumber().value);
 };
 
+const w_isInf = (context: Context) => {
+  context.pushBoolean(!context.popNumber().value.isFinite());
+};
+
+const w_isNaN = (context: Context) => {
+  context.pushBoolean(context.popNumber().value.isNaN());
+};
+
 const w_range = (context: Context) => {
   const end = context.popNumber();
   const begin = context.popNumber();
@@ -135,6 +143,9 @@ export const number: [string, BuiltinQuoteCallback][] = [
   ["number:unit", w_unit],
   ["number:unit-type", w_unitType],
   ["number:drop-unit", w_dropUnit],
+
+  ["number:inf?", w_isInf],
+  ["number:nan?", w_isNaN],
 
   ["number:range", w_range],
   ["number:clamp", w_clamp],
