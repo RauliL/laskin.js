@@ -158,6 +158,39 @@ const w_while = (context: Context, print: PrintFunction) => {
   }
 };
 
+const w_try = (context: Context, print: PrintFunction) => {
+  const quote = context.popQuote();
+  const catchQuote = context.popQuote();
+
+  try {
+    quote.call(context, print);
+  } catch (e) {
+    if (!(e instanceof LaskinError)) {
+      throw e;
+    }
+    context.pushString(e.message);
+    catchQuote.call(context, print);
+  }
+};
+
+const w_tryElse = (context: Context, print: PrintFunction) => {
+  const quote = context.popQuote();
+  const catchQuote = context.popQuote();
+  const elseQuote = context.popQuote();
+
+  try {
+    quote.call(context, print);
+  } catch (e) {
+    if (!(e instanceof LaskinError)) {
+      throw e;
+    }
+    context.pushString(e.message);
+    catchQuote.call(context, print);
+    return;
+  }
+  elseQuote.call(context, print);
+};
+
 const w_lookup = (context: Context) => {
   const id = context.popString();
   const word = context.lookup(id);
@@ -257,6 +290,8 @@ export const utils: [string, BuiltinQuoteCallback][] = [
   ["if", w_if],
   ["if-else", w_ifElse],
   ["while", w_while],
+  ["try", w_try],
+  ["try-else", w_tryElse],
 
   // Dictionary related.
   ["lookup", w_lookup],
