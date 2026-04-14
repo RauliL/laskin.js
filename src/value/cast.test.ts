@@ -1,4 +1,5 @@
 import { Decimal } from "decimal.js";
+import { describe, expect, it, vi } from "vitest";
 
 import { Month, Weekday } from "../chrono";
 import { TypeError } from "../exception";
@@ -86,7 +87,7 @@ describe("valueAsNumber()", () => {
 describe("valueAsQuote()", () => {
   it("should accept quote values", () =>
     expect(
-      valueAsQuote(newQuoteValue(new BuiltinQuote(jest.fn()))),
+      valueAsQuote(newQuoteValue(new BuiltinQuote(vi.fn()))),
     ).toBeInstanceOf(Quote));
 });
 

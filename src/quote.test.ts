@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest";
+
 import { LiteralNode, SymbolNode } from "./ast";
 import { Context } from "./context";
 import { BuiltinQuote, ScriptedQuote } from "./quote";
@@ -6,10 +8,10 @@ import { newStringValue } from "./value";
 describe("class BuiltinQuote", () => {
   describe("call()", () => {
     it("should invoke the callback", () => {
-      const callback = jest.fn();
+      const callback = vi.fn();
       const quote = new BuiltinQuote(callback);
 
-      quote.call(new Context(), jest.fn());
+      quote.call(new Context(), vi.fn());
 
       expect(callback).toHaveBeenCalled();
     });
@@ -17,7 +19,7 @@ describe("class BuiltinQuote", () => {
 
   describe("toSource()", () => {
     it("should return static string", () => {
-      const quote = new BuiltinQuote(jest.fn());
+      const quote = new BuiltinQuote(vi.fn());
 
       expect(quote.toSource()).toBe('("native quote")');
     });
@@ -36,7 +38,7 @@ describe("class ScriptedQuote", () => {
       ]);
       const context = new Context();
 
-      quote.call(context, jest.fn());
+      quote.call(context, vi.fn());
 
       expect(context.peekString()).toBe("test");
     });

@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { Month, Weekday } from "./chrono";
 import { Context } from "./context";
 import { RangeError, SyntaxError, TypeError } from "./exception";
@@ -426,7 +428,7 @@ describe("class Context", () => {
 
   describe("exec()", () => {
     it("should parse given string and execute it as a script", () => {
-      context.exec('15 "test" 2023-11-01 15:30:00 [] {}', jest.fn());
+      context.exec('15 "test" 2023-11-01 15:30:00 [] {}', vi.fn());
 
       expect(context).toHaveLength(6);
       expect(context.pop()).toHaveProperty("type", "Record");
@@ -438,11 +440,11 @@ describe("class Context", () => {
     });
 
     it("should throw an exception if syntax error is encountered", () => {
-      expect(() => context.exec("(", jest.fn())).toThrow(SyntaxError);
+      expect(() => context.exec("(", vi.fn())).toThrow(SyntaxError);
     });
 
     it("should use `console.log` as it's default output", () => {
-      const consoleLogSpy = jest
+      const consoleLogSpy = vi
         .spyOn(console, "log")
         .mockImplementation(() => {});
 

@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { Month, Weekday } from "../chrono";
 import { LaskinError } from "../exception";
 import { ScriptedQuote } from "../quote";
@@ -17,16 +19,16 @@ import { Value, ValueType } from "./types";
 import { ValueVisitor, visitValue } from "./visitor";
 
 describe("visitValue()", () => {
-  const visitBoolean = jest.fn();
-  const visitDate = jest.fn();
-  const visitMonth = jest.fn();
-  const visitNumber = jest.fn();
-  const visitQuote = jest.fn();
-  const visitRecord = jest.fn();
-  const visitString = jest.fn();
-  const visitTime = jest.fn();
-  const visitVector = jest.fn();
-  const visitWeekday = jest.fn();
+  const visitBoolean = vi.fn();
+  const visitDate = vi.fn();
+  const visitMonth = vi.fn();
+  const visitNumber = vi.fn();
+  const visitQuote = vi.fn();
+  const visitRecord = vi.fn();
+  const visitString = vi.fn();
+  const visitTime = vi.fn();
+  const visitVector = vi.fn();
+  const visitWeekday = vi.fn();
   const visitor: ValueVisitor<undefined, undefined> = {
     visitBoolean,
     visitDate,

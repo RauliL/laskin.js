@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { LaskinError } from "../exception";
 import {
   DefinitionNode,
@@ -11,11 +13,11 @@ import {
 import { NodeVisitor, visitNode } from "./visitor";
 
 describe("visitNode()", () => {
-  const visitDefinition = jest.fn();
-  const visitLiteral = jest.fn();
-  const visitRecordLiteral = jest.fn();
-  const visitSymbol = jest.fn();
-  const visitVectorLiteral = jest.fn();
+  const visitDefinition = vi.fn();
+  const visitLiteral = vi.fn();
+  const visitRecordLiteral = vi.fn();
+  const visitSymbol = vi.fn();
+  const visitVectorLiteral = vi.fn();
   const visitor: NodeVisitor<undefined, undefined> = {
     visitDefinition,
     visitLiteral,

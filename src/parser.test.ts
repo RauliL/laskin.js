@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { RecordLiteralNode } from "./ast";
 import { SyntaxError } from "./exception";
 import { parse } from "./parser";

@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import {
   DefinitionNode,
   LiteralNode,
@@ -25,7 +27,7 @@ describe("execScript()", () => {
   it("should be able to execute definition", () => {
     context.pushString("test");
 
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Definition",
         position: { line: 1, column: 1 },
@@ -40,7 +42,7 @@ describe("execScript()", () => {
   });
 
   it("should be able to execute literal", () => {
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Literal",
         position: { line: 1, column: 1 },
@@ -53,7 +55,7 @@ describe("execScript()", () => {
   });
 
   it("should be able to execute record literal", () => {
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "RecordLiteral",
         position: { line: 1, column: 1 },
@@ -78,12 +80,12 @@ describe("execScript()", () => {
   });
 
   it("should be able to execute namespaced quotes", () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
 
     context.define("string:foo", newQuoteValue(new BuiltinQuote(callback)));
     context.pushString("test");
 
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -98,7 +100,7 @@ describe("execScript()", () => {
     context.define("string:foo", newStringValue("foo"));
     context.pushString("test");
 
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -111,11 +113,11 @@ describe("execScript()", () => {
   });
 
   it("should be able to execute non-namespaced quotes", () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
 
     context.define("foo", newQuoteValue(new BuiltinQuote(callback)));
 
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -129,7 +131,7 @@ describe("execScript()", () => {
   it("should be able to pick up non-namespaced values from dictionary", () => {
     context.define("foo", newStringValue("foo"));
 
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -142,7 +144,7 @@ describe("execScript()", () => {
   });
 
   it("should be able to detect numbers", () => {
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -158,7 +160,7 @@ describe("execScript()", () => {
   });
 
   it("should be able to detect dates", () => {
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -176,7 +178,7 @@ describe("execScript()", () => {
   });
 
   it("should be able to detect times", () => {
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "Symbol",
         position: { line: 1, column: 1 },
@@ -195,7 +197,7 @@ describe("execScript()", () => {
 
   it("should throw exception when unrecognized symbol is encountered", () => {
     expect(() =>
-      execScript(context, jest.fn(), [
+      execScript(context, vi.fn(), [
         {
           type: "Symbol",
           position: { line: 1, column: 1 },
@@ -206,7 +208,7 @@ describe("execScript()", () => {
   });
 
   it("should be able to execute vector literal", () => {
-    execScript(context, jest.fn(), [
+    execScript(context, vi.fn(), [
       {
         type: "VectorLiteral",
         position: { line: 1, column: 1 },

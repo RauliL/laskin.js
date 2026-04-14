@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest";
+
 import { SymbolNode } from "./ast";
 import { Month, Weekday } from "./chrono";
 import { ScriptedQuote } from "./quote";

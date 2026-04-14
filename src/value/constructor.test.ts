@@ -1,3 +1,5 @@
+import { describe, expect, it, vi } from "vitest";
+
 import { Month, Weekday } from "../chrono";
 import { TypeError } from "../exception";
 import { BuiltinQuote } from "../quote";
@@ -63,7 +65,7 @@ describe("newNumberValue()", () => {
 
 describe("newQuoteValue()", () => {
   it("should construct quote value", () => {
-    const quote = new BuiltinQuote(jest.fn());
+    const quote = new BuiltinQuote(vi.fn());
     const result = newQuoteValue(quote);
 
     expect(result).toMatchObject({
