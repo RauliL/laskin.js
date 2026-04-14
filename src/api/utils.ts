@@ -6,6 +6,7 @@ import {
   compare,
   divide,
   equals,
+  modulo,
   multiply,
   substract,
 } from "../operators";
@@ -218,6 +219,7 @@ export const utils: [string, BuiltinQuoteCallback][] = [
   ["-", operator(substract)],
   ["*", operator(multiply)],
   ["/", operator(divide)],
+  ["%", operator(modulo)],
 
   // Stack testing.
   ["boolean?", typeTest("Boolean")],

@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "decimal.js": "^10.4.3",
+    "decimal.js": "^10.6.0",
     "strftime": "^0.10.2"
   },
   "devDependencies": {
