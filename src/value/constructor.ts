@@ -2,7 +2,12 @@ import Decimal from "decimal.js";
 
 import { Month, Weekday, isValidDate, isValidTime } from "../chrono";
 import { TypeError } from "../exception";
-import { Quote } from "../quote";
+import {
+  BuiltinQuote,
+  BuiltinQuoteCallback,
+  Quote,
+  ScriptedQuote,
+} from "../quote";
 import { Unit } from "../unit";
 import {
   BooleanValue,
@@ -17,6 +22,7 @@ import {
   VectorValue,
   WeekdayValue,
 } from "./types";
+import { Node } from "../ast";
 
 export const newBooleanValue = (value: boolean = false): BooleanValue => ({
   type: "Boolean",
@@ -54,9 +60,16 @@ export const newNumberValue = (
   unit,
 });
 
-export const newQuoteValue = (quote: Quote): QuoteValue => ({
+export const newQuoteValue = (
+  quote: Quote | BuiltinQuoteCallback | Node[],
+): QuoteValue => ({
   type: "Quote",
-  quote,
+  quote:
+    quote instanceof Quote
+      ? quote
+      : Array.isArray(quote)
+        ? new ScriptedQuote(quote)
+        : new BuiltinQuote(quote),
 });
 
 export const newRecordValue = (
@@ -88,7 +101,9 @@ export const newTimeValue = (
   };
 };
 
-export const newVectorValue = (elements: Value[] = []): VectorValue => ({
+export const newVectorValue = (
+  elements: Iterable<Value> = [],
+): VectorValue => ({
   type: "Vector",
   elements: [...elements],
 });
