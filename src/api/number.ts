@@ -151,6 +151,11 @@ export const number: [string, BuiltinQuoteCallback][] = [
   ["number:clamp", w_clamp],
   ["number:times", w_times],
 
+  // Rounding functions.
+  ["number:ceil", unaryMethod(Decimal.ceil)],
+  ["number:floor", unaryMethod(Decimal.floor)],
+  ["number:round", unaryMethod(Decimal.round)],
+
   // Exponential functions.
   ["number:exp", unaryMethod(Decimal.exp)],
   // TODO: ["number:exp2", w_exp2],
