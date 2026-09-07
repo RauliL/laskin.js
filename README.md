@@ -8,6 +8,8 @@
 [coveralls-image]: https://coveralls.io/repos/github/RauliL/laskin.js/badge.svg
 [coveralls-url]: https://coveralls.io/github/RauliL/laskin.js
 
+**Deprecated. Laskin now has WebAssembly support and this package is no longer needed.**
+
 Rewrite of [Laskin] calculator tool / programming language in JavaScript, since
 I couldn't get it to compile into WebAssembly.
 
